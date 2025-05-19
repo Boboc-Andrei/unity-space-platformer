@@ -1,0 +1,94 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "testLevel_1.tmx",
+    "automapping.whileDrawing": false,
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        ":/automap-tiles.tsx": {
+            "scaleInDock": 1
+        },
+        "AutotileRules.tmx": {
+            "scale": 3,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 87.66666666666669,
+                "y": 103.33333333333334
+            }
+        },
+        "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/8x8_placeholder13_full.tsx": {
+            "scaleInDock": 1
+        },
+        "placeholderTileset.tsx": {
+            "scaleInDock": 5.5,
+            "scaleInEditor": 16
+        },
+        "simple_platforms.tsx": {
+            "scaleInDock": 8,
+            "scaleInEditor": 16
+        },
+        "testLevel.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 153.33333333333337,
+                "y": 155.33333333333331
+            }
+        },
+        "testLevel_1.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 252.66666666666663,
+                "y": 197.33333333333331
+            }
+        },
+        "testLevel_2.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": -173.33333333333337,
+                "y": 277.3333333333333
+            }
+        }
+    },
+    "last.externalTilesetPath": "D:/Documents/Projects/Game Dev/Unity Projects/DriftingSpaceman/Assets/Sprites/Environment/World",
+    "last.imagePath": "D:/Documents/Projects/Game Dev/Unity Projects/DriftingSpaceman/Assets/Sprites/Environment/Tilesets",
+    "last.worldFilePath": "D:/Documents/Projects/Game Dev/Unity Projects/DriftingSpaceman/Assets/Sprites/Environment/World",
+    "loadedWorlds": [
+        "D:/Documents/Projects/Game Dev/Unity Projects/DriftingSpaceman/Assets/Sprites/Environment/World/testWorld.world"
+    ],
+    "map.height": 300,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 8,
+    "map.tileWidth": 8,
+    "map.width": 40,
+    "openFiles": [
+        "AutotileRules.tmx",
+        "testLevel_1.tmx",
+        "testLevel_2.tmx",
+        "placeholderTileset.tsx",
+        "simple_platforms.tsx"
+    ],
+    "project": "DriftingSpacemanWorld.tiled-project",
+    "property.type": "string",
+    "recentFiles": [
+        "AutotileRules.tmx",
+        "simple_platforms.tsx",
+        "placeholderTileset.tsx",
+        "testLevel_2.tmx",
+        "testLevel_1.tmx",
+        "testLevel.tmx"
+    ],
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 8,
+        "width": 8
+    }
+}

@@ -2,24 +2,24 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - PlayerSensors
+  - PlayerAttacks
+  - Enemies
+  - EnemyAttacks
+  - Platforms
+  - LevelTriggers
+  - Ledges
+  - LedgeDetection
   - 
   - 
   - 
@@ -41,3 +41,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 3861947459
+    locked: 0
+  - name: Player
+    uniqueID: 3745542189
+    locked: 0
+  - name: Background
+    uniqueID: 1947699471
+    locked: 0
+  - name: Effects
+    uniqueID: 1641778269
+    locked: 0
+  m_RenderingLayers:
+  - Default

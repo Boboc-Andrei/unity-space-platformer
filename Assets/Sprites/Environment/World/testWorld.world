@@ -1,0 +1,20 @@
+{
+    "maps": [
+        {
+            "fileName": "testLevel_1.tmx",
+            "height": 240,
+            "width": 480,
+            "x": -160,
+            "y": 0
+        },
+        {
+            "fileName": "testLevel_2.tmx",
+            "height": 240,
+            "width": 320,
+            "x": 320,
+            "y": 0
+        }
+    ],
+    "onlyShowAdjacentMaps": false,
+    "type": "world"
+}
