@@ -1,7 +1,8 @@
 using UnityEngine;
 
 public class TerrainSensor : MonoBehaviour {
-    [field:SerializeField] public bool IsTouching { get; set; }
+    [field: SerializeField] public bool IsTouching => TouchingCount != 0;
+    public int TouchingCount = 0;
     public LayerMask Mask;
     public float TimeSinceTouched;
 
@@ -16,11 +17,11 @@ public class TerrainSensor : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (((1 << collision.gameObject.layer) & Mask.value) == 0) return;
-        IsTouching = true;
+        TouchingCount += 1;
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (((1 << collision.gameObject.layer) & Mask.value) == 0) return;
-        IsTouching = false;
+        TouchingCount -= 1;
     }
 }

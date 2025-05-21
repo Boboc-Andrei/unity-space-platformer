@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "testLevel_1.tmx",
+    "activeFile": "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level1.tmx",
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
         "."
@@ -17,12 +17,40 @@
             "scale": 8,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 49.25,
-                "y": 93
+                "x": 160,
+                "y": 160
             }
+        },
+        "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/8x8_grassy_dirt.tsx": {
+            "scaleInDock": 1
         },
         "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/8x8_placeholder13_full.tsx": {
             "scaleInDock": 1
+        },
+        "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/8x8_simple_platform.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/8x8_simple_platform_upper.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level1.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 240,
+                "y": 160
+            }
+        },
+        "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level1.tmx#AutoMap Rules": {
+            "scaleInDock": 1
+        },
+        "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level2.tmx": {
+            "scale": 2.386875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 103.48258706467662,
+                "y": 119.82194291699396
+            }
         },
         "placeholderTileset.tsx": {
             "scaleInDock": 5.5,
@@ -42,18 +70,18 @@
         },
         "testLevel_1.tmx": {
             "scale": 4,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 300,
-                "y": 148
+                "x": 240,
+                "y": 120
             }
         },
         "testLevel_2.tmx": {
             "scale": 3,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 175.99999999999997,
-                "y": 158.66666666666666
+                "x": 160,
+                "y": 119.99999999999999
             }
         }
     },
@@ -73,16 +101,20 @@
         "testLevel_1.tmx",
         "testLevel_2.tmx",
         "placeholderTileset.tsx",
-        "simple_platforms.tsx"
+        "simple_platforms.tsx",
+        "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level2.tmx",
+        "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level1.tmx"
     ],
     "project": "DriftingSpacemanWorld.tiled-project",
     "property.type": "string",
     "recentFiles": [
         "AutotileRules.tmx",
-        "simple_platforms.tsx",
-        "placeholderTileset.tsx",
-        "testLevel_2.tmx",
         "testLevel_1.tmx",
+        "testLevel_2.tmx",
+        "placeholderTileset.tsx",
+        "simple_platforms.tsx",
+        "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level2.tmx",
+        "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level1.tmx",
         "testLevel.tmx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
