@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 4054688058076270217, guid: 3041ee4b83e0e6b429b0bce34c67467c, type: 3}
-  cameraPrefab: {fileID: 0}
+  cameraPrefab: {fileID: 75297873944283218, guid: 6f63e3deb15347b4ab106944c5481ff9, type: 3}
   spawnPlayerOnStart: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

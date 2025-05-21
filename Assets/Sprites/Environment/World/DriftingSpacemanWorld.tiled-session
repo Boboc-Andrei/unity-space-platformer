@@ -17,8 +17,8 @@
             "scale": 3,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 87.66666666666669,
-                "y": 103.33333333333334
+                "x": 160,
+                "y": 159.99999999999997
             }
         },
         "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/8x8_placeholder13_full.tsx": {
@@ -44,16 +44,16 @@
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 252.66666666666663,
-                "y": 197.33333333333331
+                "x": 407.33333333333337,
+                "y": 164
             }
         },
         "testLevel_2.tmx": {
             "scale": 0.75,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": -173.33333333333337,
-                "y": 277.3333333333333
+                "x": 227.99999999999994,
+                "y": 269.3333333333333
             }
         }
     },
