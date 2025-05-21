@@ -288,12 +288,12 @@ GameObject:
   - component: {fileID: 465424551}
   - component: {fileID: 465424552}
   m_Layer: 0
-  m_Name: TestObject
+  m_Name: ChangeSceneDelayed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &465424551
 Transform:
   m_ObjectHideFlags: 0
