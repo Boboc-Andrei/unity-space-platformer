@@ -193,6 +193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4317011986553396521}
   - component: {fileID: 5930858843652100444}
+  - component: {fileID: 7168695502959921179}
   m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
@@ -249,7 +250,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -1.03368}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -259,8 +260,25 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.3173604}
   m_EdgeRadius: 0
+--- !u!114 &7168695502959921179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3965676799386318749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35853f7606c67a444b50c12859851197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsTouching>k__BackingField: 0
+  Mask:
+    serializedVersion: 2
+    m_Bits: 2056
+  TimeSinceTouched: 0
 --- !u!1 &4942984004812187511
 GameObject:
   m_ObjectHideFlags: 0
