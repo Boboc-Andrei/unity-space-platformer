@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 4054688058076270217}
   - component: {fileID: 5086191882679139887}
   - component: {fileID: 7445538258690975812}
+  - component: {fileID: 8802894527172631182}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -119,6 +120,8 @@ MonoBehaviour:
   LeftWallCheck: {fileID: 6441200762830437281}
   RightWallCheck: {fileID: 9190212086470397167}
   Movement: {fileID: 11400000, guid: 9375c59198dd51842bdd2e7259081f73, type: 2}
+  Input: {fileID: 8802894527172631182}
+  HorizontalDrag: 0
 --- !u!114 &5086191882679139887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: 0}
+  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -159,6 +162,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3233cad3b4fd844c94d0f9c1119c111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8802894527172631182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595059012809313865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a612629373064d43a0063030c57a6a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2055883320926227010
@@ -224,7 +239,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -526,7 +541,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

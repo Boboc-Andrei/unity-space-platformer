@@ -8,17 +8,17 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-class PlayerInputController : MonoBehaviour, ICharacterInput{
+class PlayerInputController : CharacterInput{
     private InputAction moveAction;
     private InputAction jumpAction;
     private InputAction grabAction;
     private const float jumpBufferTime = 0.2f;
     private float jumpBufferCounter;
-    public float HorizontalMovement { get; set; }
-    public float VerticalMovement { get; set; }
-    public bool Jump { get; set; }
-    public bool Grab { get; set; }
-    public bool CancelJump { get; set; }
+    public override float HorizontalMovement { get; set; }
+    public override float VerticalMovement { get; set; }
+    public override bool Jump { get; set; }
+    public override bool Grab { get; set; }
+    public override bool CancelJump { get; set; }
 
     void Start() {
         moveAction = InputSystem.actions.FindAction("Move");

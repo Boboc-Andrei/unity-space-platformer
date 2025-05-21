@@ -12,7 +12,6 @@ public class CallAfterDelay : MonoBehaviour {
 
     // Will never call this frame, always the next frame at the earliest
     public static CallAfterDelay Create(float delay, System.Action action) {
-        Debug.Log("CAD created with delay: " + delay);
         CallAfterDelay cad = new GameObject("CallAfterDelay").AddComponent<CallAfterDelay>();
         cad.delay = delay;
         cad.action = action;

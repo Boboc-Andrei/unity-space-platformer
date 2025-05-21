@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 
-class CharacterMovementController : MonoBehaviour {
+public class CharacterMovementController : MonoBehaviour {
     [Header("Core Components")]
     public Rigidbody2D Body;
     public SpriteRenderer Sprite;
@@ -20,8 +20,9 @@ class CharacterMovementController : MonoBehaviour {
 
     [Header("Movement")]
     public CharacterMovementParams Movement;
-    public ICharacterInput Input;
+    public CharacterInput Input;
 
+    protected StateMachine stateMachine;
 
     // BLACKBOARD INFO
 
@@ -31,6 +32,10 @@ class CharacterMovementController : MonoBehaviour {
     public int IsTouchingWall => LeftWallCheck.IsTouching ? -1 : RightWallCheck.IsTouching ? 1 : 0;
 
     #region Movement Methods
+    public void HandleMoveInput() {
+        ApplyAccelerationX(Input.HorizontalMovement * Movement.AccelerationX);
+    }
+
     public void SetVelocityX(float velocity) {
         Body.linearVelocityX = velocity;
     }
@@ -67,6 +72,10 @@ class CharacterMovementController : MonoBehaviour {
             Body.linearVelocityX *= (1 - Movement.AirHorizontalDrag);
         }
     }
+
+    public void LimitWalkingSpeed() {
+        Body.linearVelocityX = Mathf.Clamp(Body.linearVelocityX, -Movement.TopSpeedX, Movement.TopSpeedX);
+    }
     #endregion
 
     #region Airborne Methods
@@ -78,6 +87,10 @@ class CharacterMovementController : MonoBehaviour {
         Body.gravityScale = Movement.FallingGravity;
     }
 
+    public void DisableGravity() {
+        Body.gravityScale = 0;
+    }
+
     public void ApplyAdaptiveGravity() {
         if(Body.linearVelocityY > 0) {
             ApplyJumpingGravity();
@@ -85,6 +98,26 @@ class CharacterMovementController : MonoBehaviour {
         else {
             ApplyFallingGravity();
         }
+    }
+    #endregion
+
+    #region Jump Methods
+    public void HandleJumpInput() {
+        if (Input.Jump && CanJump()) {
+            Jump();
+        }
+    }
+
+    public bool CanJump() {
+        return (IsGrounded || CanCoyoteJump()) && Body.linearVelocityY <= 0;
+    }
+
+    public bool CanCoyoteJump() {
+        return TimeSinceGrounded <= Movement.CoyoteTime;
+    }
+
+    public void Jump() {
+        SetVelocityY(Movement.JumpSpeed);
     }
     #endregion
 }
