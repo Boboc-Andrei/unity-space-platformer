@@ -6,7 +6,6 @@ using UnityEngine.Rendering;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private PlayerMovement playerPrefab;
-    [SerializeField] private CinemachineCamera cameraPrefab;
     [SerializeField] private bool spawnPlayerOnStart = true;
     private PlayerMovement Player;
     void Awake()
