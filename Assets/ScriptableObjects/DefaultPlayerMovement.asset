@@ -20,7 +20,7 @@ MonoBehaviour:
   RisingGravity: 5
   FallingGravity: 7.5
   TerminalVelocity: 30
-  GroundHorizontalDrag: 0.8
-  AirHorizontalDrag: 0.95
+  GroundHorizontalDrag: 0.25
+  AirHorizontalDrag: 0.1
   WallSlideAcceleration: 0.2
   WallSlideMaximumVelocity: 2
