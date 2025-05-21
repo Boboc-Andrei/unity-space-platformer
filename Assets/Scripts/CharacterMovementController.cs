@@ -109,7 +109,7 @@ public class CharacterMovementController : MonoBehaviour {
     }
 
     public bool CanJump() {
-        return (IsGrounded || CanCoyoteJump()) && Body.linearVelocityY <= 0;
+        return (IsGrounded || CanCoyoteJump());
     }
 
     public bool CanCoyoteJump() {

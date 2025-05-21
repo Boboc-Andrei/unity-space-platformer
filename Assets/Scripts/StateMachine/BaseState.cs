@@ -1,7 +1,6 @@
 ﻿using System.Runtime.InteropServices;
-using UnityEngine.TextCore.Text;
 using UnityEngine;
-
+using UnityEngine.TextCore.Text;
 public abstract class BaseState<T> : IState {
 
     protected T subject;
@@ -24,6 +23,8 @@ public class IdleState : BaseState<CharacterMovementController> {
 
     public override void OnEnter() {
         subject.Animator.Play("Idle");
+        Debug.Log("Entered idle state");
+
     }
 
     public override void Update() {
@@ -34,6 +35,10 @@ public class IdleState : BaseState<CharacterMovementController> {
         subject.HandleMoveInput();
         subject.HandleJumpInput();
         subject.ApplyHorizontalGroundDrag();
+    }
+
+    public override void OnExit() {
+        Debug.Log("Exited idle state");
     }
 }
 
@@ -44,10 +49,13 @@ public class WalkingState : BaseState<CharacterMovementController> {
 
     public override void OnEnter() {
         subject.Animator.Play("Walk");
+        Debug.Log("Entered walking state");
+
     }
 
     public override void Update() {
         subject.FaceMovementDirection();
+        ModulateAnimatorSpeed();
     }
 
     public override void FixedUpdate() {
@@ -55,6 +63,10 @@ public class WalkingState : BaseState<CharacterMovementController> {
         subject.HandleJumpInput();
         subject.ApplyHorizontalGroundDrag();
         subject.LimitWalkingSpeed();
+    }
+
+    public override void OnExit() {
+        Debug.Log("Exited walking state");
     }
 
     private void ModulateAnimatorSpeed() {
@@ -70,8 +82,8 @@ public class AirborneState : BaseState<CharacterMovementController> {
     }
 
     public override void OnEnter() {
+        Debug.Log("Entered airborne state");
         subject.Animator.Play("Jump");
-        subject.Animator.speed = 0;
         IsJumping = subject.Input.Jump;
     }
 
@@ -80,23 +92,27 @@ public class AirborneState : BaseState<CharacterMovementController> {
         MapVelocityToFrames();
 
         if (subject.Body.linearVelocityY <= 0) IsJumping = false;
-        if (IsJumping && subject.Input.CancelJump) subject.Body.linearVelocityY *= subject.Movement.JumpCutoffFactor;
+        if(IsJumping && subject.Input.CancelJump) subject.Body.linearVelocityY *= subject.Movement.JumpCutoffFactor;
     }
 
     public override void FixedUpdate() {
         subject.HandleMoveInput();
+        if(!IsJumping && subject.CanCoyoteJump() && subject.Input.Jump){
+            subject.Jump();
+            IsJumping = true;
+        }
+
         subject.ApplyHorizontalAirDrag();
         subject.ApplyAdaptiveGravity();
         subject.LimitWalkingSpeed();
     }
 
     public override void OnExit() {
-        subject.Animator.speed = 1;
+        Debug.Log("Exited airborne state");
     }
 
     private void MapVelocityToFrames() {
         float time = Helpers.Map(subject.Body.linearVelocity.y, subject.Movement.JumpSpeed, -subject.Movement.TerminalVelocity, 0, 0.999f, true);
         subject.Animator.Play("Jump", 0, time);
     }
-
 }

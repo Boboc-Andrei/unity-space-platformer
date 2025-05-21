@@ -17,10 +17,10 @@ internal class PlayerMovement : CharacterMovementController {
         At(idleState, jumpState, new FuncPredicate(
             () => !IsGrounded));
 
-        At(jumpState, walkState, new FuncPredicate(
-            () => IsGrounded && Input.HorizontalMovement != 0 && Mathf.Abs(Body.linearVelocityX) > 0.1f));
+        //At(jumpState, walkState, new FuncPredicate(
+        //    () => IsGrounded && Input.HorizontalMovement != 0 && Mathf.Abs(Body.linearVelocityX) > 0.1f));
         At(jumpState, idleState, new FuncPredicate(
-            () => IsGrounded && !(Input.HorizontalMovement != 0 && Mathf.Abs(Body.linearVelocityX) > 0.1f)));
+            () => IsGrounded));
 
         At(walkState, idleState, new FuncPredicate(
             () => IsGrounded && !(Input.HorizontalMovement != 0 && Mathf.Abs(Body.linearVelocityX) > 0.1f)));
@@ -35,6 +35,7 @@ internal class PlayerMovement : CharacterMovementController {
 
     private void Update() {
         stateMachine.Update();
+        Debug.Log(IsGrounded);
     }
 
     private void FixedUpdate() {
