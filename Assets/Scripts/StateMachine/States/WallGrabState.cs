@@ -23,6 +23,7 @@ class WallGrabState : BaseState<CharacterMovementController> {
         subject.LookTowards(subject.IsTouchingWall);
         subject.DisableTurning = true;
         startTime = Time.time;
+        subject.SetVelocityX(subject.IsTouchingWall * 2f);
         subject.SetVelocityY(0);
     }
 
@@ -32,8 +33,8 @@ class WallGrabState : BaseState<CharacterMovementController> {
     public override void FixedUpdate() {
         subject.HandleMoveInput();
         subject.HandleJumpInput();
-
-        if(runningTime >= holdDuration) {
+        subject.CurrentWallSlideStamina -= Time.deltaTime;
+        if(subject.CurrentWallSlideStamina <= 0) {
             subject.ApplyAccelerationY(-subject.Movement.WallSlideAcceleration);
             subject.Body.linearVelocityY = MathF.Max(subject.Body.linearVelocityY, -subject.Movement.WallSlideMaximumVelocity);
         }

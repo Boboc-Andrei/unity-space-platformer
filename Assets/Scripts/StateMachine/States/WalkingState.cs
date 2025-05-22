@@ -11,6 +11,7 @@ public class WalkingState : BaseState<CharacterMovementController> {
     }
 
     public override void Update() {
+        subject.HandleStaminaRegen();
         subject.FaceMovementDirection();
         ModulateAnimatorSpeed();
     }

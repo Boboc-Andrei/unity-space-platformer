@@ -10,6 +10,7 @@ public class IdleState : BaseState<CharacterMovementController> {
     }
 
     public override void Update() {
+        subject.HandleStaminaRegen();
         subject.FaceMovementDirection();
     }
 

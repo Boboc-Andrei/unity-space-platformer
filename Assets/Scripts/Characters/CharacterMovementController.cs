@@ -22,6 +22,8 @@ public class CharacterMovementController : MonoBehaviour {
     [Header("Movement")]
     public CharacterMovementParams Movement;
     public CharacterInput Input;
+    public float CurrentWallSlideStamina;
+    public float MaxWallSlideStamina = 1f;
 
     protected StateMachine stateMachine;
 
@@ -90,6 +92,10 @@ public class CharacterMovementController : MonoBehaviour {
 
     public void LimitWalkingSpeed() {
         Body.linearVelocityX = Mathf.Clamp(Body.linearVelocityX, -Movement.TopSpeedX, Movement.TopSpeedX);
+    }
+
+    public void HandleStaminaRegen() {
+        if (IsGrounded) CurrentWallSlideStamina = MaxWallSlideStamina;
     }
     #endregion
 
@@ -180,7 +186,7 @@ public class CharacterMovementController : MonoBehaviour {
     #region Wall Slide Methods
 
     public void StartWallGrabCooldown() {
-        StartCoroutine(DisableWallGrabbingForSeconds(.35f));
+        StartCoroutine(DisableWallGrabbingForSeconds(.2f));
     }
 
     private IEnumerator DisableWallGrabbingForSeconds(float time) {
