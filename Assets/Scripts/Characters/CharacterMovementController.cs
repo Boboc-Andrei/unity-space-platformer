@@ -31,6 +31,9 @@ public class CharacterMovementController : MonoBehaviour {
     public bool FallingThroughPlatform;
     public float TimeSinceGrounded => GroundCheck.TimeSinceTouched;
     public float HorizontalDrag;
+    public bool DisableTurning;
+    public bool CanGrabWall = true;
+
     public int IsTouchingWall => LeftWallCheck.IsTouching ? -1 : RightWallCheck.IsTouching ? 1 : 0;
 
     #region Movement Methods
@@ -60,6 +63,7 @@ public class CharacterMovementController : MonoBehaviour {
     }
 
     public void FaceMovementDirection() {
+        if (DisableTurning) return;
         LookTowards(Input.HorizontalMovement);
     }
 
@@ -126,11 +130,11 @@ public class CharacterMovementController : MonoBehaviour {
     public void Jump() {
         SetVelocityY(Movement.JumpSpeed);
     }
-    private void JumpThroughPlatform() {
+    protected void JumpThroughPlatform() {
         StartCoroutine(JumpThroughPlatformCoroutine());
     }
 
-    private IEnumerator JumpThroughPlatformCoroutine() {
+    protected IEnumerator JumpThroughPlatformCoroutine() {
         SetVelocityY(4f);
         HitBox.enabled = false;
         FallingThroughPlatform = true;
@@ -140,5 +144,19 @@ public class CharacterMovementController : MonoBehaviour {
         HitBox.enabled = true;
         FallingThroughPlatform = false;
     }
+    #endregion
+
+    #region Wall Slide Methods
+
+    public void StartWallGrabCooldown() {
+        StartCoroutine(DisableWallGrabbingForSeconds(.35f));
+    }
+
+    private IEnumerator DisableWallGrabbingForSeconds(float time) {
+        CanGrabWall = false;
+        yield return new WaitForSeconds(time);
+        CanGrabWall = true;
+    }
+
     #endregion
 }

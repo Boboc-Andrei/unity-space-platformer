@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TerrainSensor : MonoBehaviour {
-    [field: SerializeField] public bool IsTouching => TouchingCount != 0;
+    public bool IsTouching => TouchingCount != 0;
     public int TouchingCount => touchingColliders.Count;
     public LayerMask Mask;
     public float TimeSinceTouched;
