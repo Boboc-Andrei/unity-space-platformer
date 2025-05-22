@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level1.tmx",
+    "activeFile": "simple_platforms.tsx",
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
         "."
@@ -72,8 +72,8 @@
             "scale": 4,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 240,
-                "y": 120
+                "x": 322.25,
+                "y": 127.25
             }
         },
         "testLevel_2.tmx": {
@@ -112,9 +112,9 @@
         "testLevel_1.tmx",
         "testLevel_2.tmx",
         "placeholderTileset.tsx",
-        "simple_platforms.tsx",
-        "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level2.tmx",
         "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level1.tmx",
+        "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level2.tmx",
+        "simple_platforms.tsx",
         "testLevel.tmx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
