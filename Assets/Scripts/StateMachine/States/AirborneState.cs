@@ -23,6 +23,7 @@ public class AirborneState : BaseState<CharacterMovementController> {
 
     public override void FixedUpdate() {
         subject.HandleMoveInput();
+        subject.HandleJumpInput();
         if(!IsJumping && subject.CanCoyoteJump() && subject.Input.Jump && !subject.FallingThroughPlatform){
             subject.Jump();
             IsJumping = true;

@@ -6,7 +6,6 @@ public class IdleState : BaseState<CharacterMovementController> {
 
     public override void OnEnter() {
         subject.Animator.Play("Idle");
-        Debug.Log("Entered idle state");
 
     }
 
@@ -21,6 +20,5 @@ public class IdleState : BaseState<CharacterMovementController> {
     }
 
     public override void OnExit() {
-        Debug.Log("Exited idle state");
     }
 }

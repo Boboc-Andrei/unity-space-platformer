@@ -33,11 +33,14 @@ public class CharacterMovementController : MonoBehaviour {
     public float HorizontalDrag;
     public bool DisableTurning;
     public bool CanGrabWall = true;
+    private bool DisableMovementInput = false;
+    private bool DisableHorizontalDrag = false;
 
     public int IsTouchingWall => LeftWallCheck.IsTouching ? -1 : RightWallCheck.IsTouching ? 1 : 0;
 
     #region Movement Methods
     public void HandleMoveInput() {
+        if (DisableMovementInput) return;
         ApplyAccelerationX(Input.HorizontalMovement * Movement.AccelerationX);
     }
 
@@ -64,7 +67,12 @@ public class CharacterMovementController : MonoBehaviour {
 
     public void FaceMovementDirection() {
         if (DisableTurning) return;
-        LookTowards(Input.HorizontalMovement);
+        if (Input.HorizontalMovement != 0) {
+            LookTowards(Input.HorizontalMovement);
+        }
+        else if (Body.linearVelocityX > .1f) {
+            LookTowards(Body.linearVelocityX);
+        }
     }
 
     public void ApplyHorizontalGroundDrag() {
@@ -74,6 +82,7 @@ public class CharacterMovementController : MonoBehaviour {
     }
 
     public void ApplyHorizontalAirDrag() {
+        if (DisableHorizontalDrag) return;
         if (Input.HorizontalMovement == 0) {
             Body.linearVelocityX *= (1 - Movement.AirHorizontalDrag);
         }
@@ -116,8 +125,30 @@ public class CharacterMovementController : MonoBehaviour {
         else if (CanJump()) {
             Jump();
         }
+        else if (CanWallJump()) {
+            WallJump();
+        }
     }
 
+    public void WallJump() {
+        var wallJumpDirection = -IsTouchingWall;
+        Debug.Log("Wall jumping");
+        SetVelocityY(Movement.JumpSpeed);
+        SetVelocityX(Movement.TopSpeedX * wallJumpDirection);
+        StartCoroutine(DisableMovementInputForSeconds(.2f));
+    }
+
+    private IEnumerator DisableMovementInputForSeconds(float time) {
+        DisableMovementInput = true;
+        DisableHorizontalDrag = true;
+        yield return new WaitForSeconds(time);
+        DisableMovementInput = false;
+        DisableHorizontalDrag = false;
+    }
+
+    public bool CanWallJump() {
+        return !IsGrounded && IsTouchingWall != 0 && Body.linearVelocityY < .1f;
+    }
 
     public bool CanJump() {
         return (IsGrounded || CanCoyoteJump()) && Body.linearVelocityY <= 0.1f && !FallingThroughPlatform;

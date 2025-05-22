@@ -34,7 +34,7 @@ internal class PlayerMovement : CharacterMovementController {
         At(wallSlideState, idleState, new FuncPredicate(
             () => IsGrounded));
         At(wallSlideState, airborneState, new FuncPredicate(
-            () => !IsGrounded && (!Input.Grab || IsTouchingWall == 0 || Input.HorizontalMovement ==  -IsTouchingWall)));
+            () => !Input.Grab || IsTouchingWall == 0 || Input.HorizontalMovement ==  -IsTouchingWall));
 
         stateMachine.SetState(idleState);
     }
@@ -43,7 +43,6 @@ internal class PlayerMovement : CharacterMovementController {
     void Any(IState to, IPredicate condition) => stateMachine.AddAnyTransition(to, condition);
 
     private void Update() {
-        Debug.Log(CanGrabWall);
         stateMachine.Update();
     }
 

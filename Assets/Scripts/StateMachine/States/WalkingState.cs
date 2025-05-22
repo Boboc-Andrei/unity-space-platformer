@@ -7,7 +7,6 @@ public class WalkingState : BaseState<CharacterMovementController> {
 
     public override void OnEnter() {
         subject.Animator.Play("Walk");
-        Debug.Log("Entered walking state");
 
     }
 
@@ -24,7 +23,6 @@ public class WalkingState : BaseState<CharacterMovementController> {
     }
 
     public override void OnExit() {
-        Debug.Log("Exited walking state");
     }
 
     private void ModulateAnimatorSpeed() {

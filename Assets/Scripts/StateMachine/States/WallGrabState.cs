@@ -17,12 +17,13 @@ class WallGrabState : BaseState<CharacterMovementController> {
     }
 
     public override void OnEnter() {
-        Debug.Log("Entered wall slide state");
+        Debug.Log("Entered wall grab state");
         subject.Animator.Play("Wall Hang");
         subject.DisableGravity();
         subject.LookTowards(subject.IsTouchingWall);
         subject.DisableTurning = true;
         startTime = Time.time;
+        subject.SetVelocityY(0);
     }
 
     public override void Update() {
@@ -36,13 +37,10 @@ class WallGrabState : BaseState<CharacterMovementController> {
             subject.ApplyAccelerationY(-subject.Movement.WallSlideAcceleration);
             subject.Body.linearVelocityY = MathF.Max(subject.Body.linearVelocityY, -subject.Movement.WallSlideMaximumVelocity);
         }
-        else {
-            subject.SetVelocityY(0);
-        }
     }
 
     public override void OnExit() {
-        Debug.Log("Exited wall slide state");
+        Debug.Log("Exited wall grab state");
         subject.DisableTurning = false;
         subject.ApplyAdaptiveGravity();
         subject.StartWallGrabCooldown();
