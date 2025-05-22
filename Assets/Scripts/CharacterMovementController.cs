@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -104,12 +105,15 @@ public class CharacterMovementController : MonoBehaviour {
 
     #region Jump Methods
     public void HandleJumpInput() {
-        if (!Input.Jump) return;
-
-        if (CanJump()) {
+        if (!Input.Jump || FallingThroughPlatform) return;
+        if(Input.VerticalMovement < 0 && GroundCheck.IsTouchingLayer("Platforms") && Body.linearVelocityY <= 0.1f) {
+            JumpThroughPlatform();
+        }
+        else if (CanJump()) {
             Jump();
         }
     }
+
 
     public bool CanJump() {
         return (IsGrounded || CanCoyoteJump()) && Body.linearVelocityY <= 0.1f && !FallingThroughPlatform;
@@ -121,6 +125,20 @@ public class CharacterMovementController : MonoBehaviour {
 
     public void Jump() {
         SetVelocityY(Movement.JumpSpeed);
+    }
+    private void JumpThroughPlatform() {
+        StartCoroutine(JumpThroughPlatformCoroutine());
+    }
+
+    private IEnumerator JumpThroughPlatformCoroutine() {
+        SetVelocityY(4f);
+        HitBox.enabled = false;
+        FallingThroughPlatform = true;
+
+        yield return new WaitForSeconds(.25f);
+
+        HitBox.enabled = true;
+        FallingThroughPlatform = false;
     }
     #endregion
 }
