@@ -27,6 +27,7 @@ public class CharacterMovementController : MonoBehaviour {
     // BLACKBOARD INFO
 
     public bool IsGrounded => GroundCheck.IsTouching;
+    public bool FallingThroughPlatform;
     public float TimeSinceGrounded => GroundCheck.TimeSinceTouched;
     public float HorizontalDrag;
     public int IsTouchingWall => LeftWallCheck.IsTouching ? -1 : RightWallCheck.IsTouching ? 1 : 0;
@@ -103,13 +104,15 @@ public class CharacterMovementController : MonoBehaviour {
 
     #region Jump Methods
     public void HandleJumpInput() {
-        if (Input.Jump && CanJump()) {
+        if (!Input.Jump) return;
+
+        if (CanJump()) {
             Jump();
         }
     }
 
     public bool CanJump() {
-        return (IsGrounded || CanCoyoteJump()) && Body.linearVelocityY <= 0.1f;
+        return (IsGrounded || CanCoyoteJump()) && Body.linearVelocityY <= 0.1f && !FallingThroughPlatform;
     }
 
     public bool CanCoyoteJump() {
