@@ -23,7 +23,7 @@ internal class PlayerMovement : CharacterMovementController {
             () => IsGrounded));
 
         At(walkState, idleState, new FuncPredicate(
-            () => IsGrounded && !(Input.HorizontalMovement != 0 && Mathf.Abs(Body.linearVelocityX) > 0.1f)));
+            () => IsGrounded && Input.HorizontalMovement == 0 && Mathf.Abs(Body.linearVelocityX) <= 0.1f));
         At(walkState, jumpState, new FuncPredicate(
             () => !IsGrounded));
 
