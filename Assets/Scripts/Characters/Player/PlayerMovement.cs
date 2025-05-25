@@ -13,12 +13,15 @@ internal class PlayerMovement : CharacterMovementController {
         var wallSlideState = new WallGrabState(this);
         var ledgeHangState = new LedgeHangState(this);
         var ledgeClimbState = new LedgeClimbState(this);
+        var dashState = new DashState(this);
 
         // Transitions
         At(idleState, walkState, new FuncPredicate(
             () => Input.HorizontalMovement != 0 && Mathf.Abs(Body.linearVelocityX) > 0.1f));
         At(idleState, airborneState, new FuncPredicate(
             () => !IsGrounded));
+        At(idleState, dashState, new FuncPredicate(
+            () => Input.Dash && DashAvailable));
 
         At(airborneState, walkState, new FuncPredicate(
             () => IsGrounded && Input.HorizontalMovement != 0 && Mathf.Abs(Body.linearVelocityX) > 0.1f));
@@ -28,12 +31,15 @@ internal class PlayerMovement : CharacterMovementController {
             () => CanGrabWall && Input.Grab && IsTouchingWall != 0 && Body.linearVelocityY <= 0f && Input.HorizontalMovement !=  -IsTouchingWall));
         At(airborneState, ledgeHangState, new FuncPredicate(
             () => Input.Grab && IsTouchingGrabbableLedge != 0 && Body.linearVelocityY <= 0.1f && CanGrabWall));
+        At(airborneState, dashState, new FuncPredicate(
+    () => Input.Dash && DashAvailable));
 
         At(walkState, idleState, new FuncPredicate(
             () => IsGrounded && Mathf.Abs(Body.linearVelocityX) <= 0.1f));
         At(walkState, airborneState, new FuncPredicate(
             () => !IsGrounded));
-
+        At(walkState, dashState, new FuncPredicate(
+    () => Input.Dash && DashAvailable));
 
         At(wallSlideState, idleState, new FuncPredicate(
             () => IsGrounded));
@@ -51,6 +57,9 @@ internal class PlayerMovement : CharacterMovementController {
         At(ledgeClimbState, idleState, new FuncPredicate(
             () => Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1));
 
+        At(dashState, idleState, new FuncPredicate(
+            () => dashState.IsFinished));
+
         stateMachine.SetState(idleState);
     }
 
@@ -58,7 +67,7 @@ internal class PlayerMovement : CharacterMovementController {
     void Any(IState to, IPredicate condition) => stateMachine.AddAnyTransition(to, condition);
 
     private void Update() {
-        Debug.Log(Input.VerticalMovement);
+        //Debug.Log($"Dash input: {Input.Dash}, Dash available: {DashAvailable}");
         stateMachine.Update();
     }
 

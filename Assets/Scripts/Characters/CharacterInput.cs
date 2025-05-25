@@ -12,4 +12,5 @@ public class CharacterInput : MonoBehaviour {
     public virtual bool Jump { get; set; }
     public virtual bool CancelJump { get; set; }
     public virtual bool Grab { get; set; }
+    public virtual bool Dash { get; set; }
 }

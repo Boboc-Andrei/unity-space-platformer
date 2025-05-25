@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-
 class LedgeHangState : BaseState<CharacterMovementController> {
     public LedgeHangState(CharacterMovementController subject) : base(subject){
         

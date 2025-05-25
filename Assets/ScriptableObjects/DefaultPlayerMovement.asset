@@ -24,3 +24,5 @@ MonoBehaviour:
   AirHorizontalDrag: 0.1
   WallSlideAcceleration: 0.2
   WallSlideMaximumVelocity: 2
+  DashSpeed: 30
+  DashDuration: 0.2

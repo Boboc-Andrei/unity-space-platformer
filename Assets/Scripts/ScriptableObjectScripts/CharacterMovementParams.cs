@@ -21,4 +21,8 @@ public class CharacterMovementParams : ScriptableObject {
     [Header("Wall Sliding")]
     public float WallSlideAcceleration = 1f;
     public float WallSlideMaximumVelocity = 2f;
+
+    [Header("Dash")]
+    public float DashSpeed = 20f;
+    public float DashDuration = .25f;
 }

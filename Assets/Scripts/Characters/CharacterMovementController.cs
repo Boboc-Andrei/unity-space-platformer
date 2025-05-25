@@ -41,6 +41,8 @@ public class CharacterMovementController : MonoBehaviour {
     public bool CanGrabWall = true;
     public bool DisableMovementInput = false;
     private bool DisableHorizontalDrag = false;
+    public bool DashAvailable = true;
+    public int FacingDirection => Sprite.transform.rotation.y == 0 ? 1 : -1;
 
     public int IsTouchingWall => LeftWallCheck.IsTouching ? -1 : RightWallCheck.IsTouching ? 1 : 0;
     public int IsTouchingGrabbableLedge {
@@ -236,5 +238,17 @@ public class CharacterMovementController : MonoBehaviour {
         CanGrabWall = true;
     }
 
+    #endregion
+
+    #region Dash methods
+    public void StartDashCooldown() {
+        StartCoroutine(DisableDashingForSeconds(.4f));
+    }
+
+    private IEnumerator DisableDashingForSeconds(float time) {
+        DashAvailable = false;
+        yield return new WaitForSeconds(time);
+        DashAvailable = true;
+    }
     #endregion
 }

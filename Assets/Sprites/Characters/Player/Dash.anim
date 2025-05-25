@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ledge Climb
+  m_Name: Dash
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,17 +21,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 3058781696616692261, guid: 33a910aa3eaafd64ab62fc07d6710033, type: 3}
-    - time: 0.082999945
-      value: {fileID: 5497755955764985854, guid: 33a910aa3eaafd64ab62fc07d6710033, type: 3}
-    - time: 0.16599989
-      value: {fileID: 5946395679186723589, guid: 33a910aa3eaafd64ab62fc07d6710033, type: 3}
-    - time: 0.24900007
-      value: {fileID: 982721903323707711, guid: 33a910aa3eaafd64ab62fc07d6710033, type: 3}
-    - time: 0.33199978
-      value: {fileID: -677557420542231862, guid: 33a910aa3eaafd64ab62fc07d6710033, type: 3}
-    - time: 0.4049998
-      value: {fileID: -677557420542231862, guid: 33a910aa3eaafd64ab62fc07d6710033, type: 3}
+      value: {fileID: -8172087359967778726, guid: 33a910aa3eaafd64ab62fc07d6710033, type: 3}
+    - time: 0.073
+      value: {fileID: -8172087359967778726, guid: 33a910aa3eaafd64ab62fc07d6710033, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -50,7 +42,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.41499978
+    m_StopTime: 0.083
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

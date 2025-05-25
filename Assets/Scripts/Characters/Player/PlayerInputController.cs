@@ -12,6 +12,8 @@ class PlayerInputController : CharacterInput{
     private InputAction moveAction;
     private InputAction jumpAction;
     private InputAction grabAction;
+    private InputAction dashAction;
+
     private const float jumpBufferTime = 0.2f;
     private float jumpBufferCounter;
     public override float HorizontalMovement { get; set; }
@@ -19,11 +21,13 @@ class PlayerInputController : CharacterInput{
     public override bool Jump { get; set; }
     public override bool Grab { get; set; }
     public override bool CancelJump { get; set; }
+    public override bool Dash { get; set; }
 
     void Start() {
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
         grabAction = InputSystem.actions.FindAction("Grab");
+        dashAction = InputSystem.actions.FindAction("Dash");
         jumpAction.started += OnJumpPressed;
         jumpAction.canceled += OnJumpReleased;
     }
@@ -33,6 +37,7 @@ class PlayerInputController : CharacterInput{
         HorizontalMovement = movementInput.x;
         VerticalMovement = movementInput.y;
         Grab = grabAction.ReadValue<float>() > 0;
+        Dash = dashAction.ReadValue<float>() > 0;
 
         jumpBufferCounter -= Time.deltaTime;
 
