@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "simple_platforms.tsx",
+    "activeFile": "testLevel_1.tmx",
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
         "."
@@ -14,8 +14,11 @@
             "scaleInDock": 1
         },
         "AutotileRules.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
             "scale": 5.5,
-            "selectedLayer": 1,
+            "selectedLayer": 3,
             "viewCenter": {
                 "x": 160,
                 "y": 160
@@ -69,8 +72,11 @@
             }
         },
         "testLevel_1.tmx": {
+            "expandedObjectLayers": [
+                7
+            ],
             "scale": 2,
-            "selectedLayer": 0,
+            "selectedLayer": 3,
             "viewCenter": {
                 "x": 240,
                 "y": 120
@@ -87,6 +93,7 @@
     },
     "last.externalTilesetPath": "D:/Documents/Projects/Game Dev/Unity Projects/DriftingSpaceman/Assets/Sprites/Environment/World",
     "last.imagePath": "D:/Documents/Projects/Game Dev/Unity Projects/DriftingSpaceman/Assets/Sprites/Environment/Tilesets",
+    "last.objectTypesPath": "D:/Documents/Projects/Game Dev/Unity Projects/DriftingSpaceman/Assets/Sprites/Environment/World/propertytypes.xml",
     "last.worldFilePath": "D:/Documents/Projects/Game Dev/Unity Projects/DriftingSpaceman/Assets/Sprites/Environment/World",
     "loadedWorlds": [
         "D:/Documents/Projects/Game Dev/Unity Projects/DriftingSpaceman/Assets/Sprites/Environment/World/testWorld.world"
@@ -104,13 +111,13 @@
         "simple_platforms.tsx"
     ],
     "project": "DriftingSpacemanWorld.tiled-project",
-    "property.type": "string",
+    "property.type": "bool",
     "recentFiles": [
         "AutotileRules.tmx",
-        "testLevel_1.tmx",
-        "testLevel_2.tmx",
-        "placeholderTileset.tsx",
         "simple_platforms.tsx",
+        "placeholderTileset.tsx",
+        "testLevel_2.tmx",
+        "testLevel_1.tmx",
         "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level1.tmx",
         "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level2.tmx",
         "testLevel.tmx"

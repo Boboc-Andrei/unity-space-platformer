@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objecttypes>
+ <objecttype name="LedgeGrabPoint" color="#a49b1e">
+  <property name="GrabDirection" type="int" default="1"/>
+ </objecttype>
+</objecttypes>

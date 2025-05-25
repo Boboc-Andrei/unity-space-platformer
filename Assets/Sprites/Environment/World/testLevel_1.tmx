@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="8" tileheight="8" infinite="0" nextlayerid="6" nextobjectid="1">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="8" tileheight="8" infinite="0" nextlayerid="8" nextobjectid="85">
  <properties>
   <property name="unity:ignore" type="bool" value="true"/>
  </properties>
@@ -120,4 +120,69 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="7" name="Ledges">
+  <object id="71" type="LedgeGrabPoint" x="175" y="42">
+   <properties>
+    <property name="GrabDirection" type="int" value="-1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="72" type="LedgeGrabPoint" x="383" y="122">
+   <properties>
+    <property name="GrabDirection" type="int" value="-1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="73" type="LedgeGrabPoint" x="167" y="130">
+   <properties>
+    <property name="GrabDirection" type="int" value="-1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="74" type="LedgeGrabPoint" x="353" y="122">
+   <point/>
+  </object>
+  <object id="75" type="LedgeGrabPoint" x="263" y="98">
+   <properties>
+    <property name="GrabDirection" type="int" value="-1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="76" type="LedgeGrabPoint" x="383" y="154">
+   <properties>
+    <property name="GrabDirection" type="int" value="-1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="77" type="LedgeGrabPoint" x="175" y="170">
+   <properties>
+    <property name="GrabDirection" type="int" value="-1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="78" type="LedgeGrabPoint" x="255" y="170">
+   <properties>
+    <property name="GrabDirection" type="int" value="-1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="79" type="LedgeGrabPoint" x="41" y="34">
+   <point/>
+  </object>
+  <object id="80" type="LedgeGrabPoint" x="225" y="98">
+   <point/>
+  </object>
+  <object id="81" type="LedgeGrabPoint" x="113" y="130">
+   <point/>
+  </object>
+  <object id="82" type="LedgeGrabPoint" x="313" y="162">
+   <point/>
+  </object>
+  <object id="83" type="LedgeGrabPoint" x="153" y="170">
+   <point/>
+  </object>
+  <object id="84" type="LedgeGrabPoint" x="217" y="170">
+   <point/>
+  </object>
+ </objectgroup>
 </map>

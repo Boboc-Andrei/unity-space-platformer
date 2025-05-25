@@ -10,5 +10,23 @@
     "properties": [
     ],
     "propertyTypes": [
+        {
+            "color": "#ffa49b1e",
+            "drawFill": true,
+            "id": 1,
+            "members": [
+                {
+                    "name": "GrabDirection",
+                    "type": "int",
+                    "value": 1
+                }
+            ],
+            "name": "LedgeGrabPoint",
+            "type": "class",
+            "useAs": [
+                "property",
+                "object"
+            ]
+        }
     ]
 }
