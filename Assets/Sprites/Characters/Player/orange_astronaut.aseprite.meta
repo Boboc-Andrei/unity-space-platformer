@@ -2,7 +2,57 @@ fileFormatVersion: 2
 guid: 33a910aa3eaafd64ab62fc07d6710033
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Free Fall
+    second: {fileID: 7400000, guid: df7d6c6be2ba4e64e9a9f0709d6fcb3e, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Idle
+    second: {fileID: 7400000, guid: 738af938f959eab4b99e2452734062c0, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Idle Shine
+    second: {fileID: 7400000, guid: 5dfd83f73014e7948b1d6c3375e1840c, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Jump
+    second: {fileID: 7400000, guid: f79ae22889398bf47972a4c7b6b7cf15, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Ledge Climb
+    second: {fileID: 7400000, guid: 1ff6ee757276b8c488555848f9910a66, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Ledge Hang
+    second: {fileID: 7400000, guid: 379d648862acbd5428a8a04807e471b3, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Melee
+    second: {fileID: 7400000, guid: 2c1e141a40ce691418c6c2ebc302733e, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Shoot
+    second: {fileID: 7400000, guid: af1752199804a5147ab7748ca8a2788d, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Walk
+    second: {fileID: 7400000, guid: 62d2e0ddfe81230458b32726c36c1eb0, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Wall Hang
+    second: {fileID: 7400000, guid: a7816a92d23a6bb44843597c11c12930, type: 2}
   serializedVersion: 2
   userData: 
   assetBundleName: 
@@ -97,7 +147,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638834394946277982
+  platformSettingsDirtyTick: 638837901059179081
   textureAssetName: 
   singleSpriteImportData:
   - name: 

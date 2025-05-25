@@ -133,6 +133,7 @@ MonoBehaviour:
   HorizontalDrag: 0
   DisableTurning: 0
   CanGrabWall: 1
+  DisableMovementInput: 0
 --- !u!114 &5086191882679139887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -560,7 +561,7 @@ Animator:
   m_GameObject: {fileID: 4942984004812187511}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 1543699878052371704, guid: 33a910aa3eaafd64ab62fc07d6710033, type: 3}
+  m_Controller: {fileID: 9100000, guid: fc6fe685deefcd741a4ff4dc46b5bbed, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

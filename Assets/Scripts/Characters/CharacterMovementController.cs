@@ -39,7 +39,7 @@ public class CharacterMovementController : MonoBehaviour {
     public float HorizontalDrag;
     public bool DisableTurning;
     public bool CanGrabWall = true;
-    private bool DisableMovementInput = false;
+    public bool DisableMovementInput = false;
     private bool DisableHorizontalDrag = false;
 
     public int IsTouchingWall => LeftWallCheck.IsTouching ? -1 : RightWallCheck.IsTouching ? 1 : 0;

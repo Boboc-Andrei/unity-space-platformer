@@ -17,11 +17,11 @@
             "expandedObjectLayers": [
                 4
             ],
-            "scale": 5.5,
+            "scale": 16,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 160,
-                "y": 160
+                "x": 47.4375,
+                "y": 142.9375
             }
         },
         "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/8x8_grassy_dirt.tsx": {
@@ -78,8 +78,8 @@
             "scale": 2,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 240,
-                "y": 120
+                "x": 201.5,
+                "y": 142.5
             }
         },
         "testLevel_2.tmx": {

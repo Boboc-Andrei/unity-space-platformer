@@ -148,22 +148,22 @@
 </data>
  </layer>
  <objectgroup id="4" name="output_Ledges">
-  <object id="1" type="LedgeGrabPoint" x="23" y="218">
+  <object id="1" type="LedgeGrabPoint" x="23" y="216.01">
    <properties>
     <property name="GrabDirection" type="int" value="-1"/>
    </properties>
    <point/>
   </object>
-  <object id="2" type="LedgeGrabPoint" x="49" y="218">
+  <object id="2" type="LedgeGrabPoint" x="49" y="216.01">
    <point/>
   </object>
-  <object id="3" type="LedgeGrabPoint" x="23" y="146">
+  <object id="3" type="LedgeGrabPoint" x="22" y="144.01">
    <properties>
     <property name="GrabDirection" type="int" value="-1"/>
    </properties>
    <point/>
   </object>
-  <object id="4" type="LedgeGrabPoint" x="49" y="146">
+  <object id="4" type="LedgeGrabPoint" x="50" y="144.01">
    <point/>
   </object>
  </objectgroup>

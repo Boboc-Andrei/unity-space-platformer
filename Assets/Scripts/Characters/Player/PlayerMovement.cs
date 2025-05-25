@@ -12,6 +12,7 @@ internal class PlayerMovement : CharacterMovementController {
         var airborneState = new AirborneState(this);
         var wallSlideState = new WallGrabState(this);
         var ledgeHangState = new LedgeHangState(this);
+        var ledgeClimbState = new LedgeClimbState(this);
 
         // Transitions
         At(idleState, walkState, new FuncPredicate(
@@ -43,6 +44,12 @@ internal class PlayerMovement : CharacterMovementController {
 
         At(ledgeHangState, airborneState, new FuncPredicate(
             () => !Input.Grab || IsTouchingGrabbableLedge == 0 || Body.linearVelocityX != 0));
+
+        At(ledgeHangState, ledgeClimbState, new FuncPredicate(
+            () => Input.VerticalMovement > 0));
+
+        At(ledgeClimbState, idleState, new FuncPredicate(
+            () => Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1));
 
         stateMachine.SetState(idleState);
     }
