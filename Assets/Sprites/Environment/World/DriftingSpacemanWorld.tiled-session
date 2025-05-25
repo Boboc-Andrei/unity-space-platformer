@@ -17,8 +17,8 @@
             "scale": 5.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 179.63636363636363,
-                "y": 174.1818181818182
+                "x": 160,
+                "y": 160
             }
         },
         "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/8x8_grassy_dirt.tsx": {
@@ -37,8 +37,8 @@
             "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 240,
-                "y": 160
+                "x": 219.5,
+                "y": 184.5
             }
         },
         "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level1.tmx#AutoMap Rules": {
@@ -48,8 +48,8 @@
             "scale": 2.386875,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 103.48258706467661,
-                "y": 119.82194291699398
+                "x": 182.24666142969363,
+                "y": 159.62293794186962
             }
         },
         "placeholderTileset.tsx": {
@@ -72,8 +72,8 @@
             "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 298.5,
-                "y": 103
+                "x": 183.5,
+                "y": 155
             }
         },
         "testLevel_2.tmx": {
@@ -100,21 +100,20 @@
         "AutotileRules.tmx",
         "testLevel_1.tmx",
         "testLevel_2.tmx",
-        "placeholderTileset.tsx",
-        "simple_platforms.tsx",
         "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level2.tmx",
-        "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level1.tmx"
+        "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level1.tmx",
+        "placeholderTileset.tsx"
     ],
     "project": "DriftingSpacemanWorld.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "simple_platforms.tsx",
-        "placeholderTileset.tsx",
-        "AutotileRules.tmx",
         "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level1.tmx",
         "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level2.tmx",
+        "AutotileRules.tmx",
+        "placeholderTileset.tsx",
         "testLevel_2.tmx",
         "testLevel_1.tmx",
+        "simple_platforms.tsx",
         "testLevel.tmx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",

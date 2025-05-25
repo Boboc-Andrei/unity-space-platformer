@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 public class AirborneState : BaseState<CharacterMovementController> {
-    private bool IsJumping;
 
     public AirborneState(CharacterMovementController subject) : base(subject) {
         
@@ -10,24 +9,22 @@ public class AirborneState : BaseState<CharacterMovementController> {
     public override void OnEnter() {
         Debug.Log("Entered airborne state");
         subject.Animator.Play("Jump");
-        IsJumping = subject.Input.Jump;
     }
 
     public override void Update() {
         subject.FaceMovementDirection();
         MapVelocityToFrames();
 
-        if (subject.Body.linearVelocityY <= 0) IsJumping = false;
-        if(IsJumping && subject.Input.CancelJump) subject.Body.linearVelocityY *= subject.Movement.JumpCutoffFactor;
+        if (subject.Body.linearVelocityY <= 0) subject.IsJumping = false;
+        if(subject.IsJumping && subject.Input.CancelJump) { 
+            subject.Body.linearVelocityY *= subject.Movement.JumpCutoffFactor;
+            subject.IsJumping = false;
+        }
     }
 
     public override void FixedUpdate() {
         subject.HandleMoveInput();
         subject.HandleJumpInput();
-        if(!IsJumping && subject.CanCoyoteJump() && subject.Input.Jump && !subject.FallingThroughPlatform){
-            subject.Jump();
-            IsJumping = true;
-        }
 
         subject.ApplyHorizontalAirDrag();
         subject.ApplyAdaptiveGravity();

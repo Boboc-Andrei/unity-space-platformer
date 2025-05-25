@@ -30,7 +30,9 @@ public class CharacterMovementController : MonoBehaviour {
     // BLACKBOARD INFO
 
     public bool IsGrounded => GroundCheck.IsTouching;
+    public bool IsJumping;
     public bool FallingThroughPlatform;
+    public float MoveSpeedFactor = 1;
     public float TimeSinceGrounded => GroundCheck.TimeSinceTouched;
     public float HorizontalDrag;
     public bool DisableTurning;
@@ -43,7 +45,7 @@ public class CharacterMovementController : MonoBehaviour {
     #region Movement Methods
     public void HandleMoveInput() {
         if (DisableMovementInput) return;
-        ApplyAccelerationX(Input.HorizontalMovement * Movement.AccelerationX);
+        ApplyAccelerationX(Input.HorizontalMovement * Movement.AccelerationX * MoveSpeedFactor);
     }
 
     public void SetVelocityX(float velocity) {
@@ -137,11 +139,12 @@ public class CharacterMovementController : MonoBehaviour {
     }
 
     public void WallJump() {
+        IsJumping = true;
         var wallJumpDirection = -IsTouchingWall;
         Debug.Log("Wall jumping");
         SetVelocityY(Movement.JumpSpeed);
         SetVelocityX(Movement.TopSpeedX * wallJumpDirection);
-        StartCoroutine(DisableMovementInputForSeconds(.2f));
+        StartCoroutine(LerpMovementAcceleration(.3f));
     }
 
     private IEnumerator DisableMovementInputForSeconds(float time) {
@@ -150,6 +153,18 @@ public class CharacterMovementController : MonoBehaviour {
         yield return new WaitForSeconds(time);
         DisableMovementInput = false;
         DisableHorizontalDrag = false;
+    }
+
+    private IEnumerator LerpMovementAcceleration(float time) {
+        float elapsed = 0;
+        DisableHorizontalDrag = true;
+        while (elapsed < time) {
+            MoveSpeedFactor = Mathf.Lerp(0f, .75f, elapsed / time);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        DisableHorizontalDrag = false;
+        MoveSpeedFactor = 1;
     }
 
     public bool CanWallJump() {
@@ -165,6 +180,7 @@ public class CharacterMovementController : MonoBehaviour {
     }
 
     public void Jump() {
+        IsJumping = true;
         SetVelocityY(Movement.JumpSpeed);
     }
     protected void JumpThroughPlatform() {

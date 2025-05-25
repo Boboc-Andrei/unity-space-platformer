@@ -3,17 +3,17 @@
  <image source="../Tilesets/8x8_platform_upper.png" width="48" height="16"/>
  <tile id="0">
   <objectgroup draworder="index" id="2">
-   <object id="1" x="1" y="1" width="7" height="3"/>
+   <object id="1" x="1" y="0" width="7" height="4"/>
   </objectgroup>
  </tile>
  <tile id="1">
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="1" width="8" height="3"/>
+   <object id="1" x="0" y="0" width="8" height="4"/>
   </objectgroup>
  </tile>
  <tile id="2">
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="1" width="8" height="3"/>
+   <object id="1" x="0" y="0" width="8" height="4"/>
   </objectgroup>
  </tile>
  <tile id="3">
@@ -23,12 +23,12 @@
  </tile>
  <tile id="4">
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="1" width="8" height="3"/>
+   <object id="1" x="0" y="0" width="8" height="4"/>
   </objectgroup>
  </tile>
  <tile id="5">
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="1" width="7" height="3"/>
+   <object id="1" x="0" y="0" width="7" height="4"/>
   </objectgroup>
  </tile>
 </tileset>
