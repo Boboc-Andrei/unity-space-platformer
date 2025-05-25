@@ -24,6 +24,7 @@ public class WalkingState : BaseState<CharacterMovementController> {
     }
 
     public override void OnExit() {
+        subject.Animator.speed = 1;
     }
 
     private void ModulateAnimatorSpeed() {

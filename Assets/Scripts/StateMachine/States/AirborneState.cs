@@ -8,6 +8,7 @@ public class AirborneState : BaseState<CharacterMovementController> {
 
     public override void OnEnter() {
         subject.Animator.Play("Jump");
+        subject.Animator.speed = 0;
     }
 
     public override void Update() {
@@ -31,6 +32,7 @@ public class AirborneState : BaseState<CharacterMovementController> {
     }
 
     public override void OnExit() {
+        subject.Animator.speed = 1;
     }
 
     private void MapVelocityToFrames() {

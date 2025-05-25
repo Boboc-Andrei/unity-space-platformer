@@ -9,11 +9,9 @@ internal class LedgeClimbState : BaseState<CharacterMovementController> {
     }
     public override void OnEnter() {
         subject.Animator.Play("Ledge Climb");
-        subject.Animator.speed = 1;
         climbDuration = subject.Animator.GetCurrentAnimatorStateInfo(0).length;
         subject.DisableGravity();
         ledgeDirection = subject.IsTouchingGrabbableLedge;
-        Debug.Log($"Entered ledge climb state. Climbing {ledgeDirection} ledge");
         subject.LookTowards(ledgeDirection);
         subject.DisableTurning = true;
         subject.SetVelocityX(0);
@@ -37,7 +35,6 @@ internal class LedgeClimbState : BaseState<CharacterMovementController> {
             subject.GrabbableLedge.position.x + .375f * ledgeDirection,
             subject.GrabbableLedge.position.y + 1.125f
             );
-        Debug.Log("Climb animation finished. moving towards " + offset);
         subject.Body.transform.position = offset;
     }
 }

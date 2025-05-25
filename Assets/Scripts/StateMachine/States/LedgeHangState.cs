@@ -12,7 +12,6 @@ class LedgeHangState : BaseState<CharacterMovementController> {
     }
 
     public override void OnEnter() {
-        Debug.Log("Entered ledge hang state");
         subject.Animator.Play("Ledge Hang");
         subject.DisableGravity();
         subject.LookTowards(subject.IsTouchingGrabbableLedge);
