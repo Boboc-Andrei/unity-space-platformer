@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "testLevel_1.tmx",
+    "activeFile": "simple_platforms.tsx",
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
         "."
@@ -72,16 +72,16 @@
             "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 183.5,
-                "y": 155
+                "x": 240,
+                "y": 120
             }
         },
         "testLevel_2.tmx": {
             "scale": 3,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 106.33333333333331,
-                "y": 128.33333333333334
+                "x": 159.99999999999997,
+                "y": 119.99999999999999
             }
         }
     },
@@ -100,20 +100,19 @@
         "AutotileRules.tmx",
         "testLevel_1.tmx",
         "testLevel_2.tmx",
-        "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level2.tmx",
-        "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level1.tmx",
-        "placeholderTileset.tsx"
+        "placeholderTileset.tsx",
+        "simple_platforms.tsx"
     ],
     "project": "DriftingSpacemanWorld.tiled-project",
     "property.type": "string",
     "recentFiles": [
+        "AutotileRules.tmx",
+        "testLevel_1.tmx",
+        "testLevel_2.tmx",
+        "placeholderTileset.tsx",
+        "simple_platforms.tsx",
         "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level1.tmx",
         "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/Level2.tmx",
-        "AutotileRules.tmx",
-        "placeholderTileset.tsx",
-        "testLevel_2.tmx",
-        "testLevel_1.tmx",
-        "simple_platforms.tsx",
         "testLevel.tmx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",

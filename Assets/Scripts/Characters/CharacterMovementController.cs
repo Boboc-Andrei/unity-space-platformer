@@ -18,6 +18,8 @@ public class CharacterMovementController : MonoBehaviour {
     public TerrainSensor GroundCheck;
     public TerrainSensor LeftWallCheck;
     public TerrainSensor RightWallCheck;
+    public TerrainSensor LeftLedgeDetector;
+    public TerrainSensor RightLedgeDetector;
 
     [Header("Movement")]
     public CharacterMovementParams Movement;
@@ -41,6 +43,21 @@ public class CharacterMovementController : MonoBehaviour {
     private bool DisableHorizontalDrag = false;
 
     public int IsTouchingWall => LeftWallCheck.IsTouching ? -1 : RightWallCheck.IsTouching ? 1 : 0;
+    public int IsTouchingGrabbableLedge {
+        get {
+            if(GrabbableLedge == null) return 0;
+            var ledge = GrabbableLedge.GetComponent<LedgeGrabPoint>();
+            if (Mathf.Sign(GrabbableLedge.position.x - transform.position.x) == ledge.GrabDirection) return ledge.GrabDirection;
+            else return 0;
+        }
+    }
+    public Transform GrabbableLedge {
+        get {
+            if (LeftLedgeDetector.LastTouched != null) return LeftLedgeDetector.LastTouched.transform;
+            if (RightLedgeDetector.LastTouched != null) return RightLedgeDetector.LastTouched.transform;
+            return null;
+        }
+    }
 
     #region Movement Methods
     public void HandleMoveInput() {
@@ -80,7 +97,7 @@ public class CharacterMovementController : MonoBehaviour {
     }
 
     public void ApplyHorizontalGroundDrag() {
-        if(Input.HorizontalMovement == 0) {
+        if (Input.HorizontalMovement == 0) {
             Body.linearVelocityX *= (1 - Movement.GroundHorizontalDrag);
         }
     }
@@ -115,7 +132,7 @@ public class CharacterMovementController : MonoBehaviour {
     }
 
     public void ApplyAdaptiveGravity() {
-        if(Body.linearVelocityY > 0) {
+        if (Body.linearVelocityY > 0) {
             ApplyJumpingGravity();
         }
         else {
@@ -127,7 +144,7 @@ public class CharacterMovementController : MonoBehaviour {
     #region Jump Methods
     public void HandleJumpInput() {
         if (!Input.Jump || FallingThroughPlatform) return;
-        if(Input.VerticalMovement < 0 && GroundCheck.IsTouchingLayer("Platforms") && Body.linearVelocityY <= 0.1f) {
+        if (Input.VerticalMovement < 0 && GroundCheck.IsTouchingLayer("Platforms") && Body.linearVelocityY <= 0.1f) {
             JumpThroughPlatform();
         }
         else if (CanJump()) {
@@ -141,13 +158,16 @@ public class CharacterMovementController : MonoBehaviour {
     public void WallJump() {
         IsJumping = true;
         var wallJumpDirection = -IsTouchingWall;
-        Debug.Log("Wall jumping");
         SetVelocityY(Movement.JumpSpeed);
         SetVelocityX(Movement.TopSpeedX * wallJumpDirection);
-        StartCoroutine(LerpMovementAcceleration(.3f));
+        LerpMovementAcceleration(.3f);
     }
 
-    private IEnumerator DisableMovementInputForSeconds(float time) {
+    public void DisableMovementInputForSeconds(float time) {
+        StartCoroutine(DisableMovementInputForSecondsCoroutine(time));
+    }
+
+    public IEnumerator DisableMovementInputForSecondsCoroutine(float time) {
         DisableMovementInput = true;
         DisableHorizontalDrag = true;
         yield return new WaitForSeconds(time);
@@ -155,7 +175,11 @@ public class CharacterMovementController : MonoBehaviour {
         DisableHorizontalDrag = false;
     }
 
-    private IEnumerator LerpMovementAcceleration(float time) {
+    public void LerpMovementAcceleration(float time) {
+        StartCoroutine(LerpMovementAccelerationCoroutine(time));
+    }
+
+    private IEnumerator LerpMovementAccelerationCoroutine(float time) {
         float elapsed = 0;
         DisableHorizontalDrag = true;
         while (elapsed < time) {

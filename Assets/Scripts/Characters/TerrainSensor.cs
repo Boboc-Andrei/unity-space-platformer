@@ -6,7 +6,8 @@ public class TerrainSensor : MonoBehaviour {
     public int TouchingCount => touchingColliders.Count;
     public LayerMask Mask;
     public float TimeSinceTouched;
-    private HashSet<Collider2D> touchingColliders = new HashSet<Collider2D>();
+    public Collider2D LastTouched => TouchingCount != 0 ? touchingColliders[touchingColliders.Count - 1] : null;
+    private List<Collider2D> touchingColliders = new List<Collider2D>();
 
     private void FixedUpdate() {
         if(IsTouching) {

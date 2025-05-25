@@ -11,6 +11,7 @@ internal class PlayerMovement : CharacterMovementController {
         var walkState = new WalkingState(this);
         var airborneState = new AirborneState(this);
         var wallSlideState = new WallGrabState(this);
+        var ledgeHangState = new LedgeHangState(this);
 
         // Transitions
         At(idleState, walkState, new FuncPredicate(
@@ -24,9 +25,11 @@ internal class PlayerMovement : CharacterMovementController {
             () => IsGrounded));
         At(airborneState, wallSlideState, new FuncPredicate(
             () => CanGrabWall && Input.Grab && IsTouchingWall != 0 && Body.linearVelocityY <= 0f && Input.HorizontalMovement !=  -IsTouchingWall));
+        At(airborneState, ledgeHangState, new FuncPredicate(
+            () => Input.Grab && IsTouchingGrabbableLedge != 0 && Body.linearVelocityY <= 0.1f && CanGrabWall));
 
         At(walkState, idleState, new FuncPredicate(
-            () => IsGrounded && Input.HorizontalMovement == 0 && Mathf.Abs(Body.linearVelocityX) <= 0.1f));
+            () => IsGrounded && Mathf.Abs(Body.linearVelocityX) <= 0.1f));
         At(walkState, airborneState, new FuncPredicate(
             () => !IsGrounded));
 
@@ -35,6 +38,11 @@ internal class PlayerMovement : CharacterMovementController {
             () => IsGrounded));
         At(wallSlideState, airborneState, new FuncPredicate(
             () => !Input.Grab || IsTouchingWall == 0 || Input.HorizontalMovement ==  -IsTouchingWall));
+        At(wallSlideState, ledgeHangState, new FuncPredicate(
+            () => IsTouchingGrabbableLedge != 0));
+
+        At(ledgeHangState, airborneState, new FuncPredicate(
+            () => !Input.Grab || IsTouchingGrabbableLedge == 0 || Body.linearVelocityX != 0));
 
         stateMachine.SetState(idleState);
     }

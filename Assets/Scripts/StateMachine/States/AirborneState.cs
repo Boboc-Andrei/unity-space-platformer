@@ -7,7 +7,6 @@ public class AirborneState : BaseState<CharacterMovementController> {
     }
 
     public override void OnEnter() {
-        Debug.Log("Entered airborne state");
         subject.Animator.Play("Jump");
     }
 
@@ -32,7 +31,6 @@ public class AirborneState : BaseState<CharacterMovementController> {
     }
 
     public override void OnExit() {
-        Debug.Log("Exited airborne state");
     }
 
     private void MapVelocityToFrames() {
