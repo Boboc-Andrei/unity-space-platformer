@@ -1,12 +1,13 @@
-﻿using System;
+﻿using NUnit.Framework.Constraints;
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 internal class PlayerMovement : CharacterMovementController {
     private void Awake() {
         stateMachine = new StateMachine();
-
-        //Time.timeScale = .2f;
 
         // Initialize states
         var idleState = new IdleState(this);
@@ -19,7 +20,7 @@ internal class PlayerMovement : CharacterMovementController {
 
         // Transitions
         At(idleState, walkState, new FuncPredicate(
-            () => Input.HorizontalMovement != 0 && Mathf.Abs(Body.linearVelocityX) > 0.1f));
+            () => Mathf.Abs(Body.linearVelocityX) > 0.1f));
         At(idleState, airborneState, new FuncPredicate(
             () => !IsGrounded));
         At(idleState, dashState, new FuncPredicate(
@@ -75,5 +76,22 @@ internal class PlayerMovement : CharacterMovementController {
 
     private void FixedUpdate() {
         stateMachine.FixedUpdate();
+    }
+
+    internal void EnterStage(int direction) {
+        StartCoroutine(EnterStageCoroutine(direction));
+    }
+
+    private IEnumerator EnterStageCoroutine(int direction) {
+        Collider2D[] results = new Collider2D[1];
+        Body.GetAttachedColliders(results);
+
+        float startTime = Time.time;
+        while(Time.time - startTime < .3f) {
+            SetVelocityX(Movement.TopSpeedX * .8f * direction);
+            yield return null;
+        }
+
+        DisableMovementInput = false;
     }
 }

@@ -20,8 +20,8 @@
             "scale": 16,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 47.4375,
-                "y": 142.9375
+                "x": 160,
+                "y": 160
             }
         },
         "D:/Documents/Projects/Game Dev/Unity Projects/Level Warp Prototype/Assets/Environment/Tilemaps/SuperTiled/8x8_grassy_dirt.tsx": {
@@ -78,16 +78,16 @@
             "scale": 2,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 201.5,
-                "y": 142.5
+                "x": 294.5,
+                "y": 114
             }
         },
         "testLevel_2.tmx": {
             "scale": 3,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 159.99999999999997,
-                "y": 119.99999999999999
+                "x": 198.66666666666669,
+                "y": 120.33333333333334
             }
         }
     },

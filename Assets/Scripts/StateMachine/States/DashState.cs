@@ -9,7 +9,6 @@ class DashState : BaseState <CharacterMovementController> {
     public override void OnEnter() {
         IsFinished = false;
         startTime = Time.time;
-        Debug.Log("Entered dash state");
         subject.Animator.Play("Dash");
         subject.DisableGravity();
         subject.SetVelocityY(0);
@@ -27,7 +26,6 @@ class DashState : BaseState <CharacterMovementController> {
         }
     }
     public override void OnExit() {
-        Debug.Log("Exited dash state");
         subject.StartDashCooldown();
         subject.ApplyFallingGravity();   
     }

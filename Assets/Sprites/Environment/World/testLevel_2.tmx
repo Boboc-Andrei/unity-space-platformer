@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="8" tileheight="8" infinite="0" nextlayerid="4" nextobjectid="1">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="8" tileheight="8" infinite="0" nextlayerid="5" nextobjectid="5">
  <tileset firstgid="1" source="placeholderTileset.tsx"/>
  <tileset firstgid="16" source="simple_platforms.tsx"/>
  <layer id="1" name="Level" width="40" height="30">
@@ -117,4 +117,24 @@
 9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9
 </data>
  </layer>
+ <objectgroup id="4" name="Ledges">
+  <object id="1" type="LedgeGrabPoint" x="111" y="160.01">
+   <properties>
+    <property name="GrabDirection" type="int" value="-1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="2" type="LedgeGrabPoint" x="223" y="160.01">
+   <properties>
+    <property name="GrabDirection" type="int" value="-1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="3" type="LedgeGrabPoint" x="65" y="160.01">
+   <point/>
+  </object>
+  <object id="4" type="LedgeGrabPoint" x="177" y="160.01">
+   <point/>
+  </object>
+ </objectgroup>
 </map>
