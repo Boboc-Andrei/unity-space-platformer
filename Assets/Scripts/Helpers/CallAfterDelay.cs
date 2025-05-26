@@ -28,6 +28,5 @@ public class CallAfterDelay : MonoBehaviour {
     }
     void LateUpdate() {
         age += Time.deltaTime;
-        Debug.Log("CAD running time: " + age);
     }
 }
