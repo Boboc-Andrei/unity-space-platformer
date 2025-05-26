@@ -21,8 +21,10 @@ class DashState : BaseState <CharacterMovementController> {
         }
     }
     public override void FixedUpdate() {
-        if(!IsFinished)
-            subject.SetVelocityX(subject.Movement.DashSpeed * subject.FacingDirection);   
+        if (!IsFinished) {
+            subject.SetVelocityX(subject.Movement.DashSpeed * subject.FacingDirection);
+            subject.SetVelocityY(0);
+        }
     }
     public override void OnExit() {
         Debug.Log("Exited dash state");

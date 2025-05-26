@@ -6,6 +6,8 @@ internal class PlayerMovement : CharacterMovementController {
     private void Awake() {
         stateMachine = new StateMachine();
 
+        //Time.timeScale = .2f;
+
         // Initialize states
         var idleState = new IdleState(this);
         var walkState = new WalkingState(this);
@@ -28,23 +30,23 @@ internal class PlayerMovement : CharacterMovementController {
         At(airborneState, idleState, new FuncPredicate(
             () => IsGrounded));
         At(airborneState, wallSlideState, new FuncPredicate(
-            () => CanGrabWall && Input.Grab && IsTouchingWall != 0 && Body.linearVelocityY <= 0f && Input.HorizontalMovement !=  -IsTouchingWall));
+            () => CanGrabWall && Input.Grab && IsTouchingWall != 0 && Body.linearVelocityY <= 0f && Input.HorizontalMovement != -IsTouchingWall));
         At(airborneState, ledgeHangState, new FuncPredicate(
             () => Input.Grab && IsTouchingGrabbableLedge != 0 && Body.linearVelocityY <= 0.1f && CanGrabWall));
         At(airborneState, dashState, new FuncPredicate(
-    () => Input.Dash && DashAvailable));
+            () => Input.Dash && DashAvailable));
 
         At(walkState, idleState, new FuncPredicate(
             () => IsGrounded && Mathf.Abs(Body.linearVelocityX) <= 0.1f));
         At(walkState, airborneState, new FuncPredicate(
             () => !IsGrounded));
         At(walkState, dashState, new FuncPredicate(
-    () => Input.Dash && DashAvailable));
+            () => Input.Dash && DashAvailable));
 
         At(wallSlideState, idleState, new FuncPredicate(
             () => IsGrounded));
         At(wallSlideState, airborneState, new FuncPredicate(
-            () => !Input.Grab || IsTouchingWall == 0 || (Mathf.Abs(Input.HorizontalMovement) > .1f && Mathf.Sign(Input.HorizontalMovement) ==  -IsTouchingWall)));
+            () => !Input.Grab || IsTouchingWall == 0 || (Mathf.Abs(Input.HorizontalMovement) > .1f && Mathf.Sign(Input.HorizontalMovement) == -IsTouchingWall)));
         At(wallSlideState, ledgeHangState, new FuncPredicate(
             () => IsTouchingGrabbableLedge != 0));
 
