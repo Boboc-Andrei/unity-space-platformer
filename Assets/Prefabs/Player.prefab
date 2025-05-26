@@ -134,6 +134,7 @@ MonoBehaviour:
   DisableTurning: 0
   CanGrabWall: 1
   DisableMovementInput: 0
+  DashAvailable: 1
 --- !u!114 &5086191882679139887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +172,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1595059012809313865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3233cad3b4fd844c94d0f9c1119c111, type: 3}
   m_Name: 
