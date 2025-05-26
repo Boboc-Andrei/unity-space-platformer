@@ -23,7 +23,7 @@ public class CharacterMovementController : MonoBehaviour {
 
     [Header("Movement")]
     public CharacterMovementParams Movement;
-    public CharacterInput Input;
+    public ICharacterInput Input;
     public float CurrentWallSlideStamina;
     public float MaxWallSlideStamina = 1f;
 

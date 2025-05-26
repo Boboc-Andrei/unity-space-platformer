@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 internal class PlayerMovement : CharacterMovementController {
     private void Awake() {
+        Input = GetComponent<PlayerInputController>();
         stateMachine = new StateMachine();
 
         // Initialize states
@@ -70,7 +71,6 @@ internal class PlayerMovement : CharacterMovementController {
     void Any(IState to, IPredicate condition) => stateMachine.AddAnyTransition(to, condition);
 
     private void Update() {
-        //Debug.Log($"Dash input: {Input.Dash}, Dash available: {DashAvailable}");
         stateMachine.Update();
     }
 
