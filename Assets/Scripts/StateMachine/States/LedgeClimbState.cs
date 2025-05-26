@@ -14,8 +14,8 @@ internal class LedgeClimbState : BaseState<CharacterMovementController> {
         ledgeDirection = subject.IsTouchingGrabbableLedge;
         subject.LookTowards(ledgeDirection);
         subject.DisableTurning = true;
-        subject.SetVelocityX(0);
-        subject.SetVelocityX(0);
+        subject.Body.linearVelocityX = 0;
+        subject.Body.linearVelocityY = 0;
     }
     public override void Update() {
         //if (Time.time - startTime >= climbDuration) {

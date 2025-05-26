@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-
 public class CharacterMovementController : MonoBehaviour {
     [Header("Core Components")]
     public Rigidbody2D Body;
@@ -24,25 +23,28 @@ public class CharacterMovementController : MonoBehaviour {
     [Header("Movement")]
     public CharacterMovementParams Movement;
     public ICharacterInput Input;
-    public float CurrentWallSlideStamina;
-    public float MaxWallSlideStamina = 1f;
+    public float CurrentWallSlideStamina { get; set; }
+    public float MaxWallSlideStamina { get; set; } = 1f;
 
     protected StateMachine stateMachine;
 
-    // BLACKBOARD INFO
+    // ABILITIES
+    public JumpComponent Jump;
+    public WallJumpComponent WallJump;
+    public DashComponent Dash;
 
-    public bool IsGrounded => GroundCheck.IsTouching;
+    // BLACKBOARD INFO
     public bool IsJumping;
+    public bool IsGrounded => GroundCheck.IsTouching;
     public bool FallingThroughPlatform;
     public float MoveSpeedFactor = 1;
     public float TimeSinceGrounded => GroundCheck.TimeSinceTouched;
     public float HorizontalDrag;
     public bool DisableTurning;
-    public bool CanGrabWall = true;
     public bool DisableMovementInput = false;
-    private bool DisableHorizontalDrag = false;
-    public bool DashAvailable = true;
+    public bool DisableHorizontalDrag = false;
     public int FacingDirection => Sprite.transform.rotation.y == 0 ? 1 : -1;
+    public bool CanGrabWall { get; set; } = true;
 
     public int IsTouchingWall => LeftWallCheck.IsTouching ? -1 : RightWallCheck.IsTouching ? 1 : 0;
     public int IsTouchingGrabbableLedge {
@@ -67,13 +69,6 @@ public class CharacterMovementController : MonoBehaviour {
         ApplyAccelerationX(Input.HorizontalMovement * Movement.AccelerationX * MoveSpeedFactor);
     }
 
-    public void SetVelocityX(float velocity) {
-        Body.linearVelocityX = velocity;
-    }
-
-    public void SetVelocityY(float velocity) {
-        Body.linearVelocityY = velocity;
-    }
     public void ApplyAccelerationX(float acceleration) {
         Body.linearVelocityX += acceleration;
     }
@@ -145,29 +140,17 @@ public class CharacterMovementController : MonoBehaviour {
     #endregion
 
     #region Jump Methods
-    public void HandleJumpInput() {
+    public virtual void HandleJumpInput() {
         if (!Input.Jump || FallingThroughPlatform) return;
         if (Input.VerticalMovement < 0 && GroundCheck.IsTouchingLayer("Platforms") && Body.linearVelocityY <= 0.1f) {
             JumpThroughPlatform();
         }
-        else if (CanJump()) {
-            Jump();
+        else if (Jump.CanJump()) {
+            Jump.Jump();
         }
-        else if (CanWallJump()) {
-            WallJump();
+        else if (WallJump.CanWallJump()) {
+            WallJump.WallJump();
         }
-    }
-
-    public void WallJump() {
-        IsJumping = true;
-        var wallJumpDirection = -IsTouchingWall;
-        SetVelocityY(Movement.JumpSpeed);
-        SetVelocityX(Movement.TopSpeedX * wallJumpDirection);
-        LerpMovementAcceleration(.3f);
-    }
-
-    public void DisableMovementInputForSeconds(float time) {
-        StartCoroutine(DisableMovementInputForSecondsCoroutine(time));
     }
 
     public IEnumerator DisableMovementInputForSecondsCoroutine(float time) {
@@ -178,44 +161,13 @@ public class CharacterMovementController : MonoBehaviour {
         DisableHorizontalDrag = false;
     }
 
-    public void LerpMovementAcceleration(float time) {
-        StartCoroutine(LerpMovementAccelerationCoroutine(time));
-    }
 
-    private IEnumerator LerpMovementAccelerationCoroutine(float time) {
-        float elapsed = 0;
-        DisableHorizontalDrag = true;
-        while (elapsed < time) {
-            MoveSpeedFactor = Mathf.Lerp(0f, .75f, elapsed / time);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-        DisableHorizontalDrag = false;
-        MoveSpeedFactor = 1;
-    }
-
-    public bool CanWallJump() {
-        return !IsGrounded && IsTouchingWall != 0 && Body.linearVelocityY < .1f;
-    }
-
-    public bool CanJump() {
-        return (IsGrounded || CanCoyoteJump()) && Body.linearVelocityY <= 0.1f && !FallingThroughPlatform;
-    }
-
-    public bool CanCoyoteJump() {
-        return TimeSinceGrounded <= Movement.CoyoteTime;
-    }
-
-    public void Jump() {
-        IsJumping = true;
-        SetVelocityY(Movement.JumpSpeed);
-    }
     protected void JumpThroughPlatform() {
         StartCoroutine(JumpThroughPlatformCoroutine());
     }
 
     protected IEnumerator JumpThroughPlatformCoroutine() {
-        SetVelocityY(4f);
+        Body.linearVelocityY = 4f;
         HitBox.enabled = false;
         FallingThroughPlatform = true;
 
@@ -238,17 +190,5 @@ public class CharacterMovementController : MonoBehaviour {
         CanGrabWall = true;
     }
 
-    #endregion
-
-    #region Dash methods
-    public void StartDashCooldown() {
-        StartCoroutine(DisableDashingForSeconds(.4f));
-    }
-
-    private IEnumerator DisableDashingForSeconds(float time) {
-        DashAvailable = false;
-        yield return new WaitForSeconds(time);
-        DashAvailable = true;
-    }
     #endregion
 }

@@ -18,8 +18,8 @@ class WallGrabState : BaseState<CharacterMovementController> {
         subject.DisableGravity();
         subject.LookTowards(subject.IsTouchingWall);
         subject.DisableTurning = true;
-        subject.SetVelocityX(subject.IsTouchingWall * 2f);
-        subject.SetVelocityY(0);
+        subject.Body.linearVelocityX = subject.IsTouchingWall * 2f;
+        subject.Body.linearVelocityY = 0;
     }
 
     public override void Update() {

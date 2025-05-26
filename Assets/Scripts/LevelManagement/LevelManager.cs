@@ -39,7 +39,6 @@ public class LevelManager : MonoBehaviour {
 
     private void Update() {
         if (PlacePlayer) {
-            Debug.Log("");
             FindDefaultSpawnPoint();
             FindCurrentLevelTransition();
             EnsurePlayerSpawn();

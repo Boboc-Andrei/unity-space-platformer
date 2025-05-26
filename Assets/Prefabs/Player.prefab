@@ -50,6 +50,9 @@ GameObject:
   - component: {fileID: 5086191882679139887}
   - component: {fileID: 7445538258690975812}
   - component: {fileID: 8802894527172631182}
+  - component: {fileID: -7730942043245623929}
+  - component: {fileID: -4124755475889061431}
+  - component: {fileID: 411278389032843470}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -124,17 +127,16 @@ MonoBehaviour:
   LeftLedgeDetector: {fileID: 645693866084952343}
   RightLedgeDetector: {fileID: 4098739191619374279}
   Movement: {fileID: 11400000, guid: 9375c59198dd51842bdd2e7259081f73, type: 2}
-  Input: {fileID: 8802894527172631182}
-  CurrentWallSlideStamina: 0
-  MaxWallSlideStamina: 1
+  Jump: {fileID: 0}
+  WallJump: {fileID: 0}
+  Dash: {fileID: 0}
   IsJumping: 0
   FallingThroughPlatform: 0
   MoveSpeedFactor: 1
   HorizontalDrag: 0
   DisableTurning: 0
-  CanGrabWall: 1
   DisableMovementInput: 0
-  DashAvailable: 1
+  DisableHorizontalDrag: 0
 --- !u!114 &5086191882679139887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +191,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a612629373064d43a0063030c57a6a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7730942043245623929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595059012809313865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e739d7c4a194af4b95bfe0d566b7c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Context: {fileID: 0}
+--- !u!114 &-4124755475889061431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595059012809313865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793cdeb349e508e45a5024ab1c0bf442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Context: {fileID: 0}
+--- !u!114 &411278389032843470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595059012809313865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f9fc5e9b9d94e4eb0dd127df1f09e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Context: {fileID: 0}
+  Speed: 30
+  Duration: 0.2
 --- !u!1 &2055883320926227010
 GameObject:
   m_ObjectHideFlags: 0

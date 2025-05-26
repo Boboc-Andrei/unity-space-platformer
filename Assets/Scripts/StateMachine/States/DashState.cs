@@ -3,30 +3,21 @@ class DashState : BaseState <CharacterMovementController> {
     public DashState(CharacterMovementController subject) : base(subject) {
         
     }
-    public bool IsFinished = false;
-    private float startTime;
+
 
     public override void OnEnter() {
-        IsFinished = false;
-        startTime = Time.time;
         subject.Animator.Play("Dash");
         subject.DisableGravity();
-        subject.SetVelocityY(0);
+        subject.Dash.StartDash();
     }
 
     public override void Update() {
-        if(Time.time - startTime > subject.Movement.DashDuration) {
-            IsFinished = true;
-        }
+
     }
     public override void FixedUpdate() {
-        if (!IsFinished) {
-            subject.SetVelocityX(subject.Movement.DashSpeed * subject.FacingDirection);
-            subject.SetVelocityY(0);
-        }
+        
     }
     public override void OnExit() {
-        subject.StartDashCooldown();
         subject.ApplyFallingGravity();   
     }
 }

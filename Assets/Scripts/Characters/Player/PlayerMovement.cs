@@ -10,6 +10,14 @@ internal class PlayerMovement : CharacterMovementController {
         Input = GetComponent<PlayerInputController>();
         stateMachine = new StateMachine();
 
+        // Initialize abilities
+        Jump = GetComponent<JumpComponent>();
+        Jump.Context = this;
+        WallJump = GetComponent<WallJumpComponent>();
+        WallJump.Context = this;
+        Dash = GetComponent<DashComponent>();
+        Dash.Context = this;
+
         // Initialize states
         var idleState = new IdleState(this);
         var walkState = new WalkingState(this);
@@ -25,7 +33,7 @@ internal class PlayerMovement : CharacterMovementController {
         At(idleState, airborneState, new FuncPredicate(
             () => !IsGrounded));
         At(idleState, dashState, new FuncPredicate(
-            () => Input.Dash && DashAvailable));
+            () => Input.Dash && Dash.IsAvailable));
 
         At(airborneState, walkState, new FuncPredicate(
             () => IsGrounded && Input.HorizontalMovement != 0 && Mathf.Abs(Body.linearVelocityX) > 0.1f));
@@ -36,14 +44,14 @@ internal class PlayerMovement : CharacterMovementController {
         At(airborneState, ledgeHangState, new FuncPredicate(
             () => Input.Grab && IsTouchingGrabbableLedge != 0 && Body.linearVelocityY <= 0.1f && CanGrabWall));
         At(airborneState, dashState, new FuncPredicate(
-            () => Input.Dash && DashAvailable));
+            () => Input.Dash && Dash.IsAvailable));
 
         At(walkState, idleState, new FuncPredicate(
             () => IsGrounded && Mathf.Abs(Body.linearVelocityX) <= 0.1f));
         At(walkState, airborneState, new FuncPredicate(
             () => !IsGrounded));
         At(walkState, dashState, new FuncPredicate(
-            () => Input.Dash && DashAvailable));
+            () => Input.Dash && Dash.IsAvailable));
 
         At(wallSlideState, idleState, new FuncPredicate(
             () => IsGrounded));
@@ -62,7 +70,7 @@ internal class PlayerMovement : CharacterMovementController {
             () => Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1));
 
         At(dashState, idleState, new FuncPredicate(
-            () => dashState.IsFinished));
+            () => !Dash.IsActive));
 
         stateMachine.SetState(idleState);
     }
@@ -79,19 +87,15 @@ internal class PlayerMovement : CharacterMovementController {
     }
 
     internal void EnterStage(int direction) {
-        StartCoroutine(EnterStageCoroutine(direction));
-    }
-
-    private IEnumerator EnterStageCoroutine(int direction) {
-        Collider2D[] results = new Collider2D[1];
-        Body.GetAttachedColliders(results);
-
-        float startTime = Time.time;
-        while(Time.time - startTime < .3f) {
-            SetVelocityX(Movement.TopSpeedX * .8f * direction);
-            yield return null;
+        IEnumerator ApplyContinuousVelocityOverDuration(float velocity, float time) {
+            float startTime = Time.time;
+            while(Time.time - startTime <= time) {
+                Body.linearVelocityY = velocity;
+                yield return null;
+            }
         }
-
-        DisableMovementInput = false;
+        StartCoroutine(ApplyContinuousVelocityOverDuration(Movement.TopSpeedX * .8f * direction, .3f));
+        StartCoroutine(DisableMovementInputForSecondsCoroutine(.3f));
     }
+
 }

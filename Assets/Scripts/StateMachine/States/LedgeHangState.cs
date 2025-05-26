@@ -15,9 +15,9 @@ class LedgeHangState : BaseState<CharacterMovementController> {
         subject.DisableGravity();
         subject.LookTowards(subject.IsTouchingGrabbableLedge);
         subject.DisableTurning = true;
-        subject.SetVelocityX(0);
-        subject.SetVelocityY(0);
-        subject.DisableMovementInputForSeconds(.2f);
+        subject.Body.linearVelocityX = 0;
+        subject.Body.linearVelocityY = 0;
+        subject.StartCoroutine(subject.DisableMovementInputForSecondsCoroutine(.2f));
         
 
         var ledgeDetector = subject.IsTouchingGrabbableLedge == -1 ? subject.LeftLedgeDetector : subject.RightLedgeDetector;
