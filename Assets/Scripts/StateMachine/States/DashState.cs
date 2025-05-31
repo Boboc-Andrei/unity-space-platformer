@@ -7,7 +7,6 @@ class DashState : BaseState <CharacterMovementController> {
 
     public override void OnEnter() {
         subject.Animator.Play("Dash");
-        subject.DisableGravity();
         subject.Dash.StartDash();
     }
 

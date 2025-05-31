@@ -7,19 +7,15 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 
-class WallGrabState : BaseState<CharacterMovementController> {
-    
+public class WallGrabState : BaseState<CharacterMovementController> {
+
     public WallGrabState(CharacterMovementController subject) : base(subject) {
-        
+
     }
 
     public override void OnEnter() {
         subject.Animator.Play("Wall Hang");
-        subject.DisableGravity();
-        subject.LookTowards(subject.IsTouchingWall);
-        subject.DisableTurning = true;
-        subject.Body.linearVelocityX = subject.IsTouchingWall * 2f;
-        subject.Body.linearVelocityY = 0;
+        subject.WallGrab.Grab();
     }
 
     public override void Update() {
@@ -28,16 +24,13 @@ class WallGrabState : BaseState<CharacterMovementController> {
     public override void FixedUpdate() {
         subject.HandleMoveInput();
         subject.HandleJumpInput();
-        subject.CurrentWallSlideStamina -= Time.deltaTime;
-        if(subject.CurrentWallSlideStamina <= 0) {
-            subject.ApplyAccelerationY(-subject.Movement.WallSlideAcceleration);
-            subject.Body.linearVelocityY = MathF.Max(subject.Body.linearVelocityY, -subject.Movement.WallSlideMaximumVelocity);
+        subject.WallGrab.CurrentStamina -= Time.deltaTime;
+        if (subject.WallGrab.CurrentStamina <= 0) {
+            subject.WallGrab.Slide();
         }
     }
 
     public override void OnExit() {
-        subject.DisableTurning = false;
-        subject.ApplyAdaptiveGravity();
-        subject.StartWallGrabCooldown();
+        subject.WallGrab.Release();
     }
 }

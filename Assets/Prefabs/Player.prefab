@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: -7730942043245623929}
   - component: {fileID: -4124755475889061431}
   - component: {fileID: 411278389032843470}
+  - component: {fileID: 952641341573613343}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -130,6 +131,7 @@ MonoBehaviour:
   Jump: {fileID: 0}
   WallJump: {fileID: 0}
   Dash: {fileID: 0}
+  WallGrab: {fileID: 0}
   IsJumping: 0
   FallingThroughPlatform: 0
   MoveSpeedFactor: 1
@@ -232,6 +234,22 @@ MonoBehaviour:
   Context: {fileID: 0}
   Speed: 30
   Duration: 0.2
+--- !u!114 &952641341573613343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595059012809313865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db9996de22a77d24fa09c72e0d09fa28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Context: {fileID: 0}
+  WallSlideAcceleration: 0.2
+  WallSlideMaximumVelocity: 2
+  <MaxStamina>k__BackingField: 1
 --- !u!1 &2055883320926227010
 GameObject:
   m_ObjectHideFlags: 0

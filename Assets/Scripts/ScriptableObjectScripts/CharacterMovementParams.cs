@@ -18,11 +18,4 @@ public class CharacterMovementParams : ScriptableObject {
     [Range(0, 1)] public float GroundHorizontalDrag = .8f;
     [Range(0, 1)] public float AirHorizontalDrag = .8f;
 
-    [Header("Wall Sliding")]
-    public float WallSlideAcceleration = 1f;
-    public float WallSlideMaximumVelocity = 2f;
-
-    [Header("Dash")]
-    public float DashSpeed = 20f;
-    public float DashDuration = .25f;
 }

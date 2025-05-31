@@ -23,8 +23,7 @@ public class CharacterMovementController : MonoBehaviour {
     [Header("Movement")]
     public CharacterMovementParams Movement;
     public ICharacterInput Input;
-    public float CurrentWallSlideStamina { get; set; }
-    public float MaxWallSlideStamina { get; set; } = 1f;
+
 
     protected StateMachine stateMachine;
 
@@ -32,6 +31,7 @@ public class CharacterMovementController : MonoBehaviour {
     public JumpComponent Jump;
     public WallJumpComponent WallJump;
     public DashComponent Dash;
+    public WallGrabComponent WallGrab;
 
     // BLACKBOARD INFO
     public bool IsJumping;
@@ -44,7 +44,6 @@ public class CharacterMovementController : MonoBehaviour {
     public bool DisableMovementInput = false;
     public bool DisableHorizontalDrag = false;
     public int FacingDirection => Sprite.transform.rotation.y == 0 ? 1 : -1;
-    public bool CanGrabWall { get; set; } = true;
 
     public int IsTouchingWall => LeftWallCheck.IsTouching ? -1 : RightWallCheck.IsTouching ? 1 : 0;
     public int IsTouchingGrabbableLedge {
@@ -112,7 +111,7 @@ public class CharacterMovementController : MonoBehaviour {
     }
 
     public void HandleStaminaRegen() {
-        if (IsGrounded) CurrentWallSlideStamina = MaxWallSlideStamina;
+        if (IsGrounded) WallGrab.ResetStamina();
     }
     #endregion
 
@@ -176,19 +175,5 @@ public class CharacterMovementController : MonoBehaviour {
         HitBox.enabled = true;
         FallingThroughPlatform = false;
     }
-    #endregion
-
-    #region Wall Slide Methods
-
-    public void StartWallGrabCooldown() {
-        StartCoroutine(DisableWallGrabbingForSeconds(.2f));
-    }
-
-    private IEnumerator DisableWallGrabbingForSeconds(float time) {
-        CanGrabWall = false;
-        yield return new WaitForSeconds(time);
-        CanGrabWall = true;
-    }
-
     #endregion
 }

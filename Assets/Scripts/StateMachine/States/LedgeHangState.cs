@@ -37,6 +37,6 @@ class LedgeHangState : BaseState<CharacterMovementController> {
     public override void OnExit() {
         subject.DisableTurning = false;
         subject.ApplyAdaptiveGravity();
-        subject.StartWallGrabCooldown();
+        subject.WallGrab.StartCooldown();
     }
 }

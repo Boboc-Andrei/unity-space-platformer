@@ -5,15 +5,15 @@ public class DashComponent : CharacterAbilityComponent, IDashable {
     public float Speed;
     public float Duration;
     public bool IsActive { get; set; } = false;
-    public bool IsAvailable { get; set; } = true;
+    public bool IsEnabled { get; set; } = true;
     public void StartDashCooldown() {
         StartCoroutine(DisableDashingForSeconds(.4f));
     }
 
     private IEnumerator DisableDashingForSeconds(float time) {
-        IsAvailable = false;
+        IsEnabled = false;
         yield return new WaitForSeconds(time);
-        IsAvailable = true;
+        IsEnabled = true;
     }
 
     public void StartDash() {
