@@ -90,7 +90,7 @@ internal class PlayerMovement : CharacterMovementController {
         IEnumerator ApplyContinuousVelocityOverDuration(float velocity, float time) {
             float startTime = Time.time;
             while(Time.time - startTime <= time) {
-                Body.linearVelocityY = velocity;
+                Body.linearVelocityX = velocity;
                 yield return null;
             }
         }

@@ -1,7 +1,6 @@
 ﻿public class JumpComponent : CharacterAbilityComponent, IJumpable {
-    public bool IsJumping { get; set; }
     public void Jump() {
-        IsJumping = true;
+        Context.IsJumping = true;
         Context.Body.linearVelocityY = Context.Movement.JumpSpeed;
     }
 
