@@ -5,32 +5,36 @@ public class DashComponent : CharacterAbilityComponent, IDashable {
     public float Speed;
     public float Duration;
     public bool IsActive { get; set; } = false;
-    public bool IsEnabled { get; set; } = true;
+    public bool IsAvailable { get; set; } = true;
+    public bool IsOffCooldown { get; set; } = true;
     public void StartDashCooldown() {
         StartCoroutine(DisableDashingForSeconds(.4f));
     }
 
     private IEnumerator DisableDashingForSeconds(float time) {
-        IsEnabled = false;
+        IsOffCooldown = false;
         yield return new WaitForSeconds(time);
-        IsEnabled = true;
+        IsOffCooldown = true;
     }
 
-    public void StartDash() {
-        StartCoroutine(ApplyVelocityForDuration(Speed, Duration));
+    public void StartDash(int direction) {
+        direction = Mathf.Clamp(direction, -1, 1);
+        StartCoroutine(DashCoroutine(direction));
     }
-    
-    private IEnumerator ApplyVelocityForDuration(float velocity, float duration) {
+
+    private IEnumerator DashCoroutine(int direction) {
         IsActive = true;
-        Context.DisableGravity();
+        Character.DisableGravity();
 
         float startTime = Time.time;
-        while(Time.time - startTime <= duration){
-            Context.Body.linearVelocity = new Vector3(velocity * Context.FacingDirection, 0);
+        while (Time.time - startTime <= Duration) {
+            Character.Body.linearVelocity = new Vector3(Speed * direction, 0);
+            Character.LookTowards(direction);
             yield return null;
         }
 
         IsActive = false;
+        IsAvailable = false;
         StartDashCooldown();
     }
 }

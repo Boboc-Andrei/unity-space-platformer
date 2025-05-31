@@ -11,7 +11,7 @@ public class WalkingState : BaseState<CharacterMovementController> {
     }
 
     public override void Update() {
-        subject.HandleStaminaRegen();
+        subject.HandleGroundedFlagsReset();
         subject.FaceMovementDirection();
         ModulateAnimatorSpeed();
     }
@@ -19,6 +19,8 @@ public class WalkingState : BaseState<CharacterMovementController> {
     public override void FixedUpdate() {
         subject.HandleMoveInput();
         subject.HandleJumpInput();
+        subject.HandleDashInput();
+
         subject.ApplyHorizontalGroundDrag();
         subject.LimitWalkingSpeed();
     }

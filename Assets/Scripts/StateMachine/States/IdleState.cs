@@ -10,13 +10,15 @@ public class IdleState : BaseState<CharacterMovementController> {
     }
 
     public override void Update() {
-        subject.HandleStaminaRegen();
+        subject.HandleGroundedFlagsReset();
         subject.FaceMovementDirection();
     }
 
     public override void FixedUpdate() {
         subject.HandleMoveInput();
         subject.HandleJumpInput();
+        subject.HandleDashInput();
+
         subject.ApplyHorizontalGroundDrag();
     }
 

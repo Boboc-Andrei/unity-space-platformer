@@ -6,11 +6,6 @@ public class CharacterMovementParams : ScriptableObject {
     public float TopSpeedX = 9f;
     public float AccelerationX = .75f;
 
-    [Header("Jumping")]
-    public float JumpSpeed = 21f;
-    [Range(0,1)] public float JumpCutoffFactor = 0.5f;
-    [Range(0, 0.5f)] public float CoyoteTime = 0.15f;
-
     [Header("Environment")]
     public float RisingGravity = 4f;
     public float FallingGravity = 6f;

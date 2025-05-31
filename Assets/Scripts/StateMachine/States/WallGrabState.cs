@@ -16,6 +16,7 @@ public class WallGrabState : BaseState<CharacterMovementController> {
     public override void OnEnter() {
         subject.Animator.Play("Wall Hang");
         subject.WallGrab.Grab();
+        subject.HandleWallGrabFlagsReset();
     }
 
     public override void Update() {
@@ -24,6 +25,9 @@ public class WallGrabState : BaseState<CharacterMovementController> {
     public override void FixedUpdate() {
         subject.HandleMoveInput();
         subject.HandleJumpInput();
+        subject.HandleDashInput(forceDirection: -subject.IsTouchingWall);
+
+
         subject.WallGrab.CurrentStamina -= Time.deltaTime;
         if (subject.WallGrab.CurrentStamina <= 0) {
             subject.WallGrab.Slide();

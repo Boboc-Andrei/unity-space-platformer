@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: -7730942043245623929}
   - component: {fileID: -4124755475889061431}
   - component: {fileID: 411278389032843470}
-  - component: {fileID: 952641341573613343}
+  - component: {fileID: 204022905923138150}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -128,6 +128,7 @@ MonoBehaviour:
   LeftLedgeDetector: {fileID: 645693866084952343}
   RightLedgeDetector: {fileID: 4098739191619374279}
   Movement: {fileID: 11400000, guid: 9375c59198dd51842bdd2e7259081f73, type: 2}
+  CoyoteTime: 0.15
   Jump: {fileID: 0}
   WallJump: {fileID: 0}
   Dash: {fileID: 0}
@@ -205,7 +206,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e739d7c4a194af4b95bfe0d566b7c17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Context: {fileID: 0}
+  Character: {fileID: 0}
+  Speed: 22
+  InterruptionFactor: 0.5
 --- !u!114 &-4124755475889061431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793cdeb349e508e45a5024ab1c0bf442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Context: {fileID: 0}
+  Character: {fileID: 0}
 --- !u!114 &411278389032843470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,10 +234,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f9fc5e9b9d94e4eb0dd127df1f09e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Context: {fileID: 0}
+  Character: {fileID: 0}
   Speed: 30
   Duration: 0.2
---- !u!114 &952641341573613343
+--- !u!114 &204022905923138150
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,10 +246,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1595059012809313865}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db9996de22a77d24fa09c72e0d09fa28, type: 3}
+  m_Script: {fileID: 11500000, guid: e60f889778cbe0945aca7a78df6fcd71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Context: {fileID: 0}
+  Character: {fileID: 0}
   WallSlideAcceleration: 0.2
   WallSlideMaximumVelocity: 2
   <MaxStamina>k__BackingField: 1

@@ -12,13 +12,13 @@ internal class PlayerMovement : CharacterMovementController {
 
         // Initialize abilities
         Jump = GetComponent<JumpComponent>();
-        Jump.Context = this;
+        Jump.Character = this;
         WallJump = GetComponent<WallJumpComponent>();
-        WallJump.Context = this;
+        WallJump.Character = this;
         Dash = GetComponent<DashComponent>();
-        Dash.Context = this;
+        Dash.Character = this;
         WallGrab = GetComponent<WallGrabComponent>();
-        WallGrab.Context = this;
+        WallGrab.Character = this;
 
         // Initialize states
         var idleState = new IdleState(this);
@@ -34,8 +34,6 @@ internal class PlayerMovement : CharacterMovementController {
             () => Mathf.Abs(Body.linearVelocityX) > 0.1f));
         At(idleState, airborneState, new FuncPredicate(
             () => !IsGrounded));
-        At(idleState, dashState, new FuncPredicate(
-            () => Input.Dash && Dash.IsEnabled));
 
         At(airborneState, walkState, new FuncPredicate(
             () => IsGrounded && Input.HorizontalMovement != 0 && Mathf.Abs(Body.linearVelocityX) > 0.1f));
@@ -45,15 +43,13 @@ internal class PlayerMovement : CharacterMovementController {
             () => WallGrab.IsEnabled && Input.Grab && IsTouchingWall != 0 && Body.linearVelocityY <= 0f && Input.HorizontalMovement != -IsTouchingWall));
         At(airborneState, ledgeHangState, new FuncPredicate(
             () => Input.Grab && IsTouchingGrabbableLedge != 0 && Body.linearVelocityY <= 0.1f && WallGrab.IsEnabled));
-        At(airborneState, dashState, new FuncPredicate(
-            () => Input.Dash && Dash.IsEnabled));
+
 
         At(walkState, idleState, new FuncPredicate(
             () => IsGrounded && Mathf.Abs(Body.linearVelocityX) <= 0.1f));
         At(walkState, airborneState, new FuncPredicate(
             () => !IsGrounded));
-        At(walkState, dashState, new FuncPredicate(
-            () => Input.Dash && Dash.IsEnabled));
+
 
         At(wallSlideState, idleState, new FuncPredicate(
             () => IsGrounded));
@@ -73,6 +69,9 @@ internal class PlayerMovement : CharacterMovementController {
 
         At(dashState, idleState, new FuncPredicate(
             () => !Dash.IsActive));
+
+        Any(dashState, new FuncPredicate(
+            () => Dash.IsActive));
 
         stateMachine.SetState(idleState);
     }

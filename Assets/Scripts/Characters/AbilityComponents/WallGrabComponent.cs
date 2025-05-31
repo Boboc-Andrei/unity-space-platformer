@@ -10,20 +10,20 @@ public class WallGrabComponent : CharacterAbilityComponent, IWallGrabbable {
     [field:SerializeField] public float MaxStamina { get; set; } = 1f;
 
     public void Grab() {
-        Context.DisableGravity();
-        Context.LookTowards(Context.IsTouchingWall);
-        Context.DisableTurning = true;
-        Context.Body.linearVelocityX = Context.IsTouchingWall * 2f;
-        Context.Body.linearVelocityY = 0;
+        Character.DisableGravity();
+        Character.LookTowards(Character.IsTouchingWall);
+        Character.DisableTurning = true;
+        Character.Body.linearVelocityX = Character.IsTouchingWall * 2f;
+        Character.Body.linearVelocityY = 0;
     }
     public void Slide() {
-        Context.ApplyAccelerationY(-WallSlideAcceleration);
-        Context.Body.linearVelocityY = MathF.Max(Context.Body.linearVelocityY, -WallSlideMaximumVelocity);
+        Character.ApplyAccelerationY(-WallSlideAcceleration);
+        Character.Body.linearVelocityY = MathF.Max(Character.Body.linearVelocityY, -WallSlideMaximumVelocity);
     }
 
     public void Release() {
-        Context.DisableTurning = false;
-        Context.ApplyAdaptiveGravity();
+        Character.DisableTurning = false;
+        Character.ApplyAdaptiveGravity();
         StartCooldown();
     }
 

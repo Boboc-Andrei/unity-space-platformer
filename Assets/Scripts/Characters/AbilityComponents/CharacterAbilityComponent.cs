@@ -2,5 +2,5 @@
 
 public class CharacterAbilityComponent : MonoBehaviour {
     [HideInInspector]
-    public CharacterMovementController Context;
+    public CharacterMovementController Character;
 }

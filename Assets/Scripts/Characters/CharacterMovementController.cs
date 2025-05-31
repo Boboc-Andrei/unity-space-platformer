@@ -23,6 +23,7 @@ public class CharacterMovementController : MonoBehaviour {
     [Header("Movement")]
     public CharacterMovementParams Movement;
     public ICharacterInput Input;
+    [HideInInspector] public float CoyoteTime = .15f;
 
 
     protected StateMachine stateMachine;
@@ -48,7 +49,7 @@ public class CharacterMovementController : MonoBehaviour {
     public int IsTouchingWall => LeftWallCheck.IsTouching ? -1 : RightWallCheck.IsTouching ? 1 : 0;
     public int IsTouchingGrabbableLedge {
         get {
-            if(GrabbableLedge == null) return 0;
+            if (GrabbableLedge == null) return 0;
             var ledge = GrabbableLedge.GetComponent<LedgeGrabPoint>();
             if (Mathf.Sign(GrabbableLedge.position.x - transform.position.x) == ledge.GrabDirection) return ledge.GrabDirection;
             else return 0;
@@ -66,6 +67,12 @@ public class CharacterMovementController : MonoBehaviour {
     public void HandleMoveInput() {
         if (DisableMovementInput) return;
         ApplyAccelerationX(Input.HorizontalMovement * Movement.AccelerationX * MoveSpeedFactor);
+    }
+
+    public void HandleDashInput(int forceDirection = 0) {
+        if (!Input.Dash || !Dash.IsOffCooldown || !Dash.IsAvailable || Dash.IsActive) return;
+        if (forceDirection == 0) Dash.StartDash(FacingDirection);
+        else Dash.StartDash(forceDirection);
     }
 
     public void ApplyAccelerationX(float acceleration) {
@@ -110,8 +117,15 @@ public class CharacterMovementController : MonoBehaviour {
         Body.linearVelocityX = Mathf.Clamp(Body.linearVelocityX, -topSpeed, topSpeed);
     }
 
-    public void HandleStaminaRegen() {
-        if (IsGrounded) WallGrab.ResetStamina();
+    public void HandleGroundedFlagsReset() {
+        if (IsGrounded) {
+            WallGrab.ResetStamina();
+            Dash.IsAvailable = true;
+        }
+    }
+
+    public void HandleWallGrabFlagsReset() {
+        Dash.IsAvailable = true;
     }
     #endregion
 

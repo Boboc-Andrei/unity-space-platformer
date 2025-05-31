@@ -28,6 +28,7 @@ class PlayerInputController : MonoBehaviour, ICharacterInput {
         jumpAction = InputSystem.actions.FindAction("Jump");
         grabAction = InputSystem.actions.FindAction("Grab");
         dashAction = InputSystem.actions.FindAction("Dash");
+
         jumpAction.started += OnJumpPressed;
         jumpAction.canceled += OnJumpReleased;
     }
@@ -35,7 +36,7 @@ class PlayerInputController : MonoBehaviour, ICharacterInput {
     void Update() {
         Vector2 movementInput = moveAction.ReadValue<Vector2>();
         HorizontalMovement = movementInput.x;
-        VerticalMovement = movementInput.y;
+        VerticalMovement = Mathf.Abs(movementInput.y) > .15f ? movementInput.y : 0;
         Grab = grabAction.ReadValue<float>() > 0;
         Dash = dashAction.ReadValue<float>() > 0;
 
