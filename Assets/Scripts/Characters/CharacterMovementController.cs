@@ -113,7 +113,7 @@ public class CharacterMovementController : MonoBehaviour {
     }
 
     public void LimitWalkingSpeed() {
-        var topSpeed = Input.HorizontalMovement == 0 ? Movement.TopSpeedX : Mathf.Abs(Input.HorizontalMovement) * Movement.TopSpeedX;
+        var topSpeed = Mathf.Abs(Input.HorizontalMovement) < .8f ? Movement.TopSpeedX * .4f : Movement.TopSpeedX;
         Body.linearVelocityX = Mathf.Clamp(Body.linearVelocityX, -topSpeed, topSpeed);
     }
 
