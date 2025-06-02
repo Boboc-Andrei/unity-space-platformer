@@ -76,9 +76,6 @@ internal class PlayerMovement : CharacterMovementController {
         stateMachine.SetState(idleState);
     }
 
-    void At(IState from, IState to, IPredicate condition) => stateMachine.AddTransition(from, to, condition);
-    void Any(IState to, IPredicate condition) => stateMachine.AddAnyTransition(to, condition);
-
     private void Update() {
         stateMachine.Update();
     }
@@ -86,11 +83,13 @@ internal class PlayerMovement : CharacterMovementController {
     private void FixedUpdate() {
         stateMachine.FixedUpdate();
     }
+    void At(IState from, IState to, IPredicate condition) => stateMachine.AddTransition(from, to, condition);
+    void Any(IState to, IPredicate condition) => stateMachine.AddAnyTransition(to, condition);
 
     internal void EnterStage(int direction) {
         IEnumerator ApplyContinuousVelocityOverDuration(float velocity, float time) {
             float startTime = Time.time;
-            while(Time.time - startTime <= time) {
+            while (Time.time - startTime <= time) {
                 Body.linearVelocityX = velocity;
                 yield return null;
             }

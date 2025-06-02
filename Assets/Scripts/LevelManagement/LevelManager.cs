@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour {
     private Vector3 playerSpawnPoint;
     private GameObject defaultSpawnPoint;
 
-    private bool PlacePlayer = true;
+    private bool QueuePlayerSetup = true;
 
     void Awake() {
     }
@@ -32,52 +32,51 @@ public class LevelManager : MonoBehaviour {
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadMode) {
         FindCurrentLevelTransition();
-        CallAfterDelay.Create(0, () => { PlacePlayer = true; });
+        CallAfterDelay.Create(0, () => { QueuePlayerSetup = true; });
     }
     private void Start() {
     }
 
     private void Update() {
-        if (PlacePlayer) {
+        if (QueuePlayerSetup) {
             FindDefaultSpawnPoint();
             FindCurrentLevelTransition();
             EnsurePlayerSpawn();
             CameraSetup();
 
-            PlacePlayer = false;
+            QueuePlayerSetup = false;
         }
     }
 
     private void EnsurePlayerSpawn() {
 
+        // Find where to place player on scene load
         if (currentTransition != null) {
             playerSpawnPoint = currentTransition.transform.position + new Vector3(0, 1);
-            //Debug.Log("LevelManager EnsurePlayerSpawn: transitioned from other stage. Setting spawnPoint at transition area " + playerSpawnPoint);
         }
         else {
+            if (defaultSpawnPoint == null) return;
             playerSpawnPoint = defaultSpawnPoint.transform.position;
-            //Debug.Log("LevelManager EnsurePlayerSpawn: NOT transitioned from other stage. Setting spawnPoint at default point " + playerSpawnPoint);
         }
 
+        // Spawn player if it's null and not already spawned
         if (Player == null) {
-            //Debug.Log("LevelManager EnsurePlayerSpawn: Player is null. Instantiating player at spawnPoint" + playerSpawnPoint);
-            Player = Instantiate(playerPrefab, playerSpawnPoint, Quaternion.identity);
+            var existingPlayer = FindFirstObjectByType<PlayerMovement>();
+            if (existingPlayer != null) Player = existingPlayer;
+            else Player = Instantiate(playerPrefab, playerSpawnPoint, Quaternion.identity);
         }
         else {
-            //Debug.Log("LevelManager EnsurePlayerSpawn: Player already exists. Placing player at spawnPoint" + playerSpawnPoint);
             Player.transform.position = playerSpawnPoint;
         }
+
         if (currentTransition != null) {
-            //Debug.Log("Entered from other stage. Playing move sequence");
             Player.EnterStage(-currentTransition.ExitDirection);
         }
     }
 
     private void FindCurrentLevelTransition() {
-        //Debug.Log($"Finding transition to {lastSceneName} with exit direction {enteredFromDirection}");
         currentTransition = FindObjectsByType<LevelTransition>(sortMode: FindObjectsSortMode.None).FirstOrDefault(lt => lt.To.Name == lastSceneName && lt.ExitDirection == enteredFromDirection);
         if (currentTransition == null) {
-            //Debug.Log("FindCurrentLevelTransition: No transition from other stage found");
             return;
         }
         currentTransition.isActive = false;
@@ -85,11 +84,10 @@ public class LevelManager : MonoBehaviour {
 
     private void FindDefaultSpawnPoint() {
         defaultSpawnPoint = GameObject.Find("SpawnPoint");
-        //if (defaultSpawnPoint == null) Debug.Log("LevelManager FindSpawnPoint: default spawn point NOT found");
-        //else Debug.Log("LevelManager FindSpawnPoint: default spawn point found " + defaultSpawnPoint.transform.position);
     }
 
     private void CameraSetup() {
+        if (Player == null) return;
         var currentCamera = FindFirstObjectByType<CinemachineCamera>();
         if (currentCamera == null) {
             Camera = Instantiate(cameraPrefab, Player.transform.position, Quaternion.identity);
@@ -103,7 +101,5 @@ public class LevelManager : MonoBehaviour {
         enteredFromDirection = -exitDirection;
         SceneHelper.UnloadScene(fromScene);
         SceneHelper.LoadScene(toScene, true, true);
-
-        //Debug.Log($"Exiting scene {fromScene} through {exitDirection}. Entering {toScene} from {-exitDirection}");
     }
 }
