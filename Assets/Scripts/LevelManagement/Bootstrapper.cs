@@ -8,11 +8,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class Bootstrapper : PersistentSingleton<Bootstrapper> {
+public class Bootstrapper {
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void Init() {
         SceneHelper.LoadScene("Bootstrapper");
-        SceneHelper.LoadScene("TestScene1", true, true);
+        //SceneHelper.LoadScene("TestScene1", true, true);
     }
 }
 

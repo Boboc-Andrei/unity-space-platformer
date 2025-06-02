@@ -97,5 +97,4 @@ internal class PlayerMovement : CharacterMovementController {
         StartCoroutine(ApplyContinuousVelocityOverDuration(Movement.TopSpeedX * .8f * direction, .3f));
         StartCoroutine(DisableMovementInputForSecondsCoroutine(.3f));
     }
-
 }
