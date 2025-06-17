@@ -11,14 +11,10 @@ internal class PlayerMovement : CharacterMovementController {
         stateMachine = new StateMachine();
 
         // Initialize abilities
-        Jump = GetComponent<JumpComponent>();
-        Jump.Character = this;
-        WallJump = GetComponent<WallJumpComponent>();
-        WallJump.Character = this;
-        Dash = GetComponent<DashComponent>();
-        Dash.Character = this;
-        WallGrab = GetComponent<WallGrabComponent>();
-        WallGrab.Character = this;
+        Jump = InitializeAbilityComponent<JumpComponent>();
+        WallJump = InitializeAbilityComponent<WallJumpComponent>();
+        Dash = InitializeAbilityComponent<DashComponent>();
+        WallGrab = InitializeAbilityComponent<WallGrabComponent>();
 
         // Initialize states
         var idleState = new IdleState(this);
@@ -74,6 +70,12 @@ internal class PlayerMovement : CharacterMovementController {
             () => Dash.IsActive));
 
         stateMachine.SetState(idleState);
+    }
+
+    private TComponent InitializeAbilityComponent<TComponent>() where TComponent : CharacterAbilityComponent {
+        TComponent component = GetComponent<TComponent>();
+        component.Character = this;
+        return component;
     }
 
     private void Update() {
