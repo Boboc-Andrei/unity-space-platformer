@@ -23,7 +23,7 @@ public class CharacterMovementController : MonoBehaviour {
     [Header("Movement")]
     public CharacterMovementParams Movement;
     public ICharacterInput Input;
-    [HideInInspector] public float CoyoteTime = .15f;
+    public float CoyoteTime = .1f;
 
 
     protected StateMachine stateMachine;
@@ -36,6 +36,7 @@ public class CharacterMovementController : MonoBehaviour {
 
     // BLACKBOARD INFO
     public bool IsJumping;
+    public bool DoubleJumpUsed;
     public bool IsGrounded => GroundCheck.IsTouching;
     public bool FallingThroughPlatform;
     public float MoveSpeedFactor = 1;
@@ -121,6 +122,7 @@ public class CharacterMovementController : MonoBehaviour {
         if (IsGrounded) {
             WallGrab.ResetStamina();
             Dash.IsAvailable = true;
+            DoubleJumpUsed = false;
         }
     }
 
@@ -159,11 +161,21 @@ public class CharacterMovementController : MonoBehaviour {
             JumpThroughPlatform();
         }
         else if (Jump.CanJump()) {
+            Debug.Log("Jumped");
             Jump.Jump();
         }
         else if (WallJump.CanWallJump()) {
             WallJump.WallJump();
         }
+        else if (CanDoubleJump()) {
+            Debug.Log("Double jumped");
+            Jump.Jump();
+            DoubleJumpUsed = true;
+        }
+    }
+
+    private bool CanDoubleJump() {
+        return !DoubleJumpUsed && !IsJumping && Body.linearVelocityY <= 0f;
     }
 
     public IEnumerator DisableMovementInputForSecondsCoroutine(float time) {

@@ -1,4 +1,6 @@
-﻿public class JumpComponent : CharacterAbilityComponent, IJumpable {
+﻿using UnityEngine;
+
+public class JumpComponent : CharacterAbilityComponent, IJumpable {
     public float Speed;
     public float InterruptionFactor;
 
