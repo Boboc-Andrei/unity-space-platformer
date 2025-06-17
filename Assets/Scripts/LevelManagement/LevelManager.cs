@@ -7,8 +7,9 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour {
-    private string lastSceneName = "[None]";
+public class LevelManager : MonoBehaviour, IDataPersistence {
+    private string CurrentLevel;
+    private string LastLevel = "[None]";
     private int enteredFromDirection = 0;
     private LevelTransition currentTransition;
 
@@ -18,6 +19,7 @@ public class LevelManager : MonoBehaviour {
     private CinemachineCamera Camera;
 
     private Vector3 playerSpawnPoint;
+    private Vector3 savedPlayerPosition;
     private GameObject defaultSpawnPoint;
 
     private bool QueuePlayerSetup = true;
@@ -39,27 +41,18 @@ public class LevelManager : MonoBehaviour {
 
     private void Update() {
         if (QueuePlayerSetup) {
-            FindDefaultSpawnPoint();
+            FindPlayerSpawnPoint();
             FindCurrentLevelTransition();
             EnsurePlayerSpawn();
             CameraSetup();
-
-            QueuePlayerSetup = false;
         }
     }
 
     private void EnsurePlayerSpawn() {
+        if (playerSpawnPoint == null) return;
 
-        // Find where to place player on scene load
-        if (currentTransition != null) {
-            playerSpawnPoint = currentTransition.transform.position + new Vector3(0, 1);
-        }
-        else {
-            if (defaultSpawnPoint == null) return;
-            playerSpawnPoint = defaultSpawnPoint.transform.position;
-        }
 
-        // Spawn player if it's null and not already spawned
+        // Spawn player if it's null and place it at spawn position
         if (Player == null) {
             var existingPlayer = FindFirstObjectByType<PlayerMovement>();
             if (existingPlayer != null) Player = existingPlayer;
@@ -72,18 +65,29 @@ public class LevelManager : MonoBehaviour {
         if (currentTransition != null) {
             Player.EnterStage(-currentTransition.ExitDirection);
         }
+
+        QueuePlayerSetup = false;
     }
 
     private void FindCurrentLevelTransition() {
-        currentTransition = FindObjectsByType<LevelTransition>(sortMode: FindObjectsSortMode.None).FirstOrDefault(lt => lt.To.Name == lastSceneName && lt.ExitDirection == enteredFromDirection);
+        currentTransition = FindObjectsByType<LevelTransition>(sortMode: FindObjectsSortMode.None).FirstOrDefault(lt => lt.To.Name == LastLevel && lt.ExitDirection == enteredFromDirection);
         if (currentTransition == null) {
             return;
         }
         currentTransition.isActive = false;
     }
 
-    private void FindDefaultSpawnPoint() {
-        defaultSpawnPoint = GameObject.Find("SpawnPoint");
+    private void FindPlayerSpawnPoint() {
+        if (currentTransition != null) {
+            playerSpawnPoint = currentTransition.transform.position + new Vector3(0, 1);
+        }
+        else if (savedPlayerPosition != Vector3.zero) {
+            playerSpawnPoint = savedPlayerPosition;
+        }
+        else {
+            var spawnPoint = GameObject.Find("SpawnPoint");
+            if (spawnPoint != null) playerSpawnPoint = spawnPoint.transform.position;
+        }
     }
 
     private void CameraSetup() {
@@ -97,9 +101,25 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void TransitionToLevel(string fromScene, string toScene, int exitDirection) {
-        lastSceneName = fromScene;
+        LastLevel = fromScene;
+        CurrentLevel = toScene;
         enteredFromDirection = -exitDirection;
         SceneHelper.UnloadScene(fromScene);
         SceneHelper.LoadScene(toScene, true, true);
     }
+
+    #region Data Persistence
+    public string Scene => gameObject.scene.name;
+    public void LoadData(GameData data) {
+        if (CurrentLevel == data.CurrentLevel) return;
+        CurrentLevel = data.CurrentLevel;
+        savedPlayerPosition = data.PlayerPosition;
+        SceneHelper.LoadScene(data.CurrentLevel, true, true);
+        Debug.Log($"Loaded player at position {data.PlayerPosition} in scene {data.CurrentLevel}");
+    }
+    public void SaveData(ref GameData data) {
+        data.PlayerPosition = Player.transform.position;
+        data.CurrentLevel = CurrentLevel;
+    }
+    #endregion
 }
